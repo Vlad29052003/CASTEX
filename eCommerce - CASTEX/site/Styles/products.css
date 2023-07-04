@@ -1,0 +1,106 @@
+.container table {
+    width: 100%;
+}
+
+.container tr {
+    height: 450px;
+}
+
+.container .left_filter {
+    width: 14%;
+}
+
+.container table td {
+    vertical-align: top;
+    height: auto;
+    text-align: left;
+}
+
+.container .b_mid {
+    display: flex;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    text-align: center;
+}
+
+.container .box {
+    width: 250px;
+    margin: 25px;
+    background: white;
+    text-align: center;
+    box-shadow: -1px 0 5px 5px rgba(0, 0, 0, 0.12);
+    border: 10px white solid;
+}
+
+.container .box img {
+    width: 100%;
+}
+
+.container .text_product1 {
+    font-size: 18px;
+}
+
+.container .rate span {
+    font-size: 15px;
+    color: rgb(247, 47, 47);
+    margin-bottom: 10px;
+}
+
+.container .rate span:nth-child(4),
+.container .rate span:nth-child(5) {
+    color: rgb(204, 204, 204);
+}
+
+.container .checked {
+    color: orange;
+}
+
+.container .cart_button button {
+    border: none;
+    border-radius: 15px 0px;
+    outline: 0;
+    padding: 12px;
+    color: white;
+    background-color: rgb(247, 47, 47);
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+    font-size: 18px;
+}
+
+.container .cart_button button:hover {
+    background: rgb(243, 148, 25);
+
+}
+
+.container .text_product1 :hover {
+    color: rgb(247, 47, 47);
+
+}
+
+.container .text_product1 {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+}
+
+.container .text_product1 .product_name {
+    overflow: hidden;
+    max-width: 250px;
+}
+
+@media (max-width: 1200px) {
+    .container .box {
+        width: 180px;
+        margin: 10px;
+    }
+}
+
+@media (max-width: 800px) {
+    .container .box {
+        width: 120px;
+        margin: 10px;
+    }
+}
+

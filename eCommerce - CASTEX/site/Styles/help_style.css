@@ -1,0 +1,38 @@
+.container {
+    position: relative;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 30px;
+}
+
+.container table {
+    width: 100%;
+}
+
+.container .left, .container .right {
+    width: 20%;
+}
+
+.container .mid {
+    height: 100%;
+    padding: 2px;
+}
+
+.container h1, h2, h3, h4, h5, h6 {
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.align_top {
+    vertical-align: top;
+}
+
+.container .justify {
+    text-align: justify;
+}
+
+.container .help, .container .complaints, .container .returns {
+    width: 20%;
+    padding-left: 25px;
+    padding-right: 25px;
+}
