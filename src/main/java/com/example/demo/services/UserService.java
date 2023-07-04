@@ -1,7 +1,7 @@
 package com.example.demo.services;
 
+import com.example.demo.entities.UserEntity;
 import com.example.demo.repositories.UserRepository;
-import entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -19,38 +19,38 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public ResponseEntity<List<User>> getAll() {
+    public ResponseEntity<List<UserEntity>> getAll() {
         return ResponseEntity.ok(userRepository.findAll());
     }
 
-    public ResponseEntity<?> signUp(User user) {
+    public ResponseEntity<?> signUp(UserEntity userEntity) {
         boolean usernameIsTaken = userRepository.findAll()
-                .stream().map(u -> u.username).anyMatch(u -> u.equals(user.username));
+                .stream().map(u -> u.username).anyMatch(u -> u.equals(userEntity.username));
         if(usernameIsTaken) return ResponseEntity.badRequest()
                 .body("This username already exists!");
         boolean emailIsUsed = userRepository.findAll().stream().map(u -> u.email)
-                .anyMatch(u -> u.equals(user.email));
+                .anyMatch(u -> u.equals(userEntity.email));
         if(emailIsUsed) return ResponseEntity.badRequest().body("This email is already in use!");
-        userRepository.save(user);
+        userRepository.save(userEntity);
         return ResponseEntity.ok().body("User successfully created!");
     }
 
     public ResponseEntity<?> logIn(String email, int hashedPassword) {
-        Optional<User> user = userRepository.findAll().stream()
+        Optional<UserEntity> user = userRepository.findAll().stream()
                 .filter(u -> u.email.equals(email)).findFirst();
         if(user.isEmpty()) return ResponseEntity.badRequest()
                 .body("This email is not associated with any accounts!");
-        User u = user.get();
+        UserEntity u = user.get();
         if(hashedPassword != u.hashedPassword) return ResponseEntity
                 .badRequest().body("Incorrect password!");
         return ResponseEntity.ok(u);
     }
 
     @Transactional
-    public ResponseEntity<?> update(long id, User user) {
-        if(!userRepository.existsById(id) || user.id != id)
+    public ResponseEntity<?> update(long id, UserEntity userEntity) {
+        if(!userRepository.existsById(id) || userEntity.id != id)
             return ResponseEntity.badRequest().body("Invalid id!");
-        userRepository.saveAndFlush(user);
+        userRepository.saveAndFlush(userEntity);
         return ResponseEntity.ok("Successfully updated!");
     }
 

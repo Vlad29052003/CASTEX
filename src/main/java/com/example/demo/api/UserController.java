@@ -1,7 +1,7 @@
 package com.example.demo.api;
 
+import com.example.demo.entities.UserEntity;
 import com.example.demo.services.UserService;
-import entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,13 +27,13 @@ public class UserController {
     }
 
     @GetMapping(path = {"", "/"})
-    public ResponseEntity<List<User>> getAll() {
+    public ResponseEntity<List<UserEntity>> getAll() {
         return userService.getAll();
     }
 
     @PostMapping("/signUp")
-    public ResponseEntity<?> signUp(@RequestBody User user) {
-        return userService.signUp(user);
+    public ResponseEntity<?> signUp(@RequestBody UserEntity userEntity) {
+        return userService.signUp(userEntity);
     }
 
     @PostMapping("/logIn/{email}")
@@ -45,8 +45,8 @@ public class UserController {
     @PutMapping("/{id}")
     @Transactional
     public ResponseEntity<?> update(@PathVariable("id") long id,
-                                    @RequestBody User user) {
-        return userService.update(id, user);
+                                    @RequestBody UserEntity userEntity) {
+        return userService.update(id, userEntity);
     }
 
     @DeleteMapping("/{id}")
