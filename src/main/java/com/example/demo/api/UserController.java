@@ -38,20 +38,20 @@ public class UserController {
 
     @PostMapping("/logIn/{email}")
     public ResponseEntity<?> signUp(@PathVariable("email") String email,
-                                    @RequestBody int hashedPassword) {
+                                    @RequestBody String hashedPassword) {
         return userService.logIn(email, hashedPassword);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/{email}")
     @Transactional
-    public ResponseEntity<?> update(@PathVariable("id") long id,
+    public ResponseEntity<?> update(@PathVariable("email") String email,
                                     @RequestBody UserEntity userEntity) {
-        return userService.update(id, userEntity);
+        return userService.update(email, userEntity);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/{email}")
     @Transactional
-    public ResponseEntity<?> delete(@PathVariable("id") long id) {
-        return userService.delete(id);
+    public ResponseEntity<?> delete(@PathVariable("email") String email) {
+        return userService.delete(email);
     }
 }
