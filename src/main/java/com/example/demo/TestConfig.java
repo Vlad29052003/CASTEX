@@ -16,7 +16,7 @@ public class TestConfig {
     @Bean
     CommandLineRunner commandLineRunner(UserRepository userRepository) {
         return args -> {
-            UserEntity u1 = new UserEntity("User1",
+            UserEntity u1 = new UserEntity(
                     "u1@email.com",
                     1111,
                     "fn1",
@@ -25,7 +25,7 @@ public class TestConfig {
                     "address 1",
                     "zip1",
                     "m");
-            UserEntity u2 = new UserEntity("User2",
+            UserEntity u2 = new UserEntity(
                     "u2@email.com",
                     1111,
                     "fn2",

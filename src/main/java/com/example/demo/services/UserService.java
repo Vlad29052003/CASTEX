@@ -24,10 +24,6 @@ public class UserService {
     }
 
     public ResponseEntity<?> signUp(UserEntity userEntity) {
-        boolean usernameIsTaken = userRepository.findAll()
-                .stream().map(u -> u.username).anyMatch(u -> u.equals(userEntity.username));
-        if(usernameIsTaken) return ResponseEntity.badRequest()
-                .body("This username already exists!");
         boolean emailIsUsed = userRepository.findAll().stream().map(u -> u.email)
                 .anyMatch(u -> u.equals(userEntity.email));
         if(emailIsUsed) return ResponseEntity.badRequest().body("This email is already in use!");

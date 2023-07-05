@@ -13,7 +13,6 @@ public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     public long id;
-    public String username;
     public String email;
     public int hashedPassword;
     public String firstName;
@@ -23,11 +22,9 @@ public class UserEntity {
     public String zipCode;
     public String gender;
 
-    public UserEntity(String username, String email,
-                      int hashedPassword, String firstName,
-                      String lastName, Date birthDate,
-                      String address, String zipCode, String gender) {
-        this.username = username;
+    public UserEntity(String email, int hashedPassword, String firstName,
+                      String lastName, Date birthDate, String address,
+                      String zipCode, String gender) {
         this.email = email;
         this.hashedPassword = hashedPassword;
         this.firstName = firstName;
@@ -49,7 +46,6 @@ public class UserEntity {
         UserEntity userEntity = (UserEntity) o;
         return id == userEntity.id &&
                 hashedPassword == userEntity.hashedPassword &&
-                Objects.equals(username, userEntity.username) &&
                 Objects.equals(email, userEntity.email) &&
                 Objects.equals(firstName, userEntity.firstName) &&
                 Objects.equals(lastName, userEntity.lastName) &&
@@ -61,7 +57,7 @@ public class UserEntity {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, username, email,
+        return Objects.hash(id, email,
                 hashedPassword, firstName, lastName,
                 birthDate, address, zipCode, gender);
     }
@@ -70,7 +66,6 @@ public class UserEntity {
     public String toString() {
         return "User{" +
                 "id=" + id +
-                ", username='" + username + '\'' +
                 ", email='" + email + '\'' +
                 ", hashedPassword=" + hashedPassword +
                 ", firstName='" + firstName + '\'' +

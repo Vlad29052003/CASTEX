@@ -65,7 +65,7 @@ form {
 
 .field label {
     position: absolute;
-    top: 50%;
+    top: 3%;
     left: 5px;
     color: #adadad;
     transform: translateY(-50%);
@@ -74,30 +74,7 @@ form {
     transition: .5s;
 }
 
-.field span::before {
-    content: '';
-    position: absolute;
-    top: 40px;
-    left:  0;
-    width: 0%;
-    height: 1px;
-    background: rgb(247, 47, 47);
-}
-
-.field input:focus ~ label,
-.field input:valid ~ label {
-    top: -5px;
-    color: rgb(247, 47, 47);
-
-}
-
-.field input:focus ~ span::before,
-.field input:valid ~ span::before {
-    width: 100%;
-
-}
-
-input[type="submit"] {
+button {
     position: relative;
     width: 70%;
     height: 50px;
@@ -112,15 +89,8 @@ input[type="submit"] {
     outline: none;
 }
 
-input[type="submit"]:hover {
+button:hover {
     background-color: rgb(255, 0, 0);
-    font-size: 24px;
-    transition: .5s;
-}
-
-input[type="date"] {
-    color: #adadad;
-    text-decoration: none;
 }
 
 .links {
@@ -135,9 +105,11 @@ input[type="date"] {
     padding-bottom: 10px;
 }
 
+
+
 .radio_field {
-    display: inline-flex;
-    width: 100%;
+    display: flex;
+    justify-content: space-between;
     color: #adadad;
     font-size: 20px;
     accent-color: rgb(247, 47, 47);
@@ -147,11 +119,6 @@ input[type="date"] {
 .radio_field div {
     padding-left: 5px;
     padding-bottom: none;
-}
-
-.radio_container {
-    margin-left: auto;
-    margin-right: 0;
 }
 
 .product_image {
@@ -237,10 +204,22 @@ input[type="date"] {
     padding-left: 2px;
 }
 
-.description textarea:focus {
-    border-color: rgb(247, 47, 47);
+.message {
+    color: rgb(247, 47, 47);
+    position: absolute;
+    top: 42px;
+    padding-left: 5px;
+    font-size: 12px;
 }
 
+.message_checkbox {
+    position: static;
+    font-size: medium;
+}
 
-
-
+#user_info {
+    display: none;
+    background-color: white;
+    font-size: 25px;
+    padding-top: 25px;
+}
