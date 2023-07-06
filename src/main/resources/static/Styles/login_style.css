@@ -1,0 +1,225 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: rgb(243, 148, 25);
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+
+.container {
+    overflow: hidden;
+    box-sizing: border-box;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border-radius: 20px;
+    width: 95%;
+    max-width: 500px;
+    text-align: center;
+    display: block;
+    align-items: center;
+}
+
+.signup {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.logo {
+    vertical-align: middle;
+    background: rgb(247, 47, 47);
+}
+
+.logo img {
+    padding-top: 7px;
+    height: 70px;
+}
+
+.form_div {
+    display: block;
+    background-color: white;
+}
+form {
+    padding: 0 70px;
+    box-sizing: border-box;
+    padding-top: 5%;
+}
+
+.field {
+    position: relative;
+    border-bottom: 1px solid #adadad;
+    margin: 30px 0;
+}
+
+.field input{
+    width: 100%;
+    padding: 0 5px;
+    height: 40px;
+    font-size: 18px;
+    border: none;
+    background: none;
+    outline: none;
+}
+
+.field label {
+    position: absolute;
+    top: 3%;
+    left: 5px;
+    color: #adadad;
+    transform: translateY(-50%);
+    font-size: 19px;
+    pointer-events: none;
+    transition: .5s;
+}
+
+button {
+    position: relative;
+    width: 70%;
+    height: 50px;
+    font-size: 22px;
+    background-color: rgb(247, 47, 47);
+    color: rgb(255, 255, 255);
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 3px 10px;
+    border: none;
+    cursor: pointer;
+    font-weight: 700;
+    outline: none;
+}
+
+button:hover {
+    background-color: rgb(255, 0, 0);
+}
+
+.links {
+    padding: 5px 0;
+}
+
+.links :hover {
+    text-decoration: underline;
+}
+
+.container div :last-child {
+    padding-bottom: 10px;
+}
+
+
+
+.radio_field {
+    display: flex;
+    justify-content: space-between;
+    color: #adadad;
+    font-size: 20px;
+    accent-color: rgb(247, 47, 47);
+    padding-bottom: 25px;
+}
+
+.radio_field div {
+    padding-left: 5px;
+    padding-bottom: none;
+}
+
+.product_image {
+    position: relative;
+    text-align: left;
+    padding: 0;
+    margin: 0;
+    display: inline-flex;
+    color: #adadad;
+    font-size: 19px;
+    padding-right: 45px;
+}
+
+.product_image input[type="file"]::-webkit-file-upload-button{
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    background-color: rgb(247, 47, 47);
+    border: none;
+    height: 30px;
+    width: 120px;
+    font-size: 19px;
+    border-radius: 4px;
+    color: white;
+    cursor: pointer;
+}
+
+.product_image input[type="file"]::-webkit-file-upload-button:hover{
+    background-color: rgb(255, 0, 0);
+    font-size: 20px;
+    transition: .5s;
+}
+
+.selection {
+    position: relative;
+    border-bottom: 1px solid #adadad;
+    margin: 30px 0;
+}
+
+.selection select {
+    background: transparent;
+    width: 100%;
+    border: none;
+    outline: none;
+    font-size: 19px;
+    color: #adadad;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    width: 100%;
+    height: 40px;
+}
+
+.selection span::before {
+    content: '';
+    position: absolute;
+    top: 40px;
+    left:  0;
+    width: 0%;
+    height: 1px;
+    background: rgb(247, 47, 47);
+}
+
+.selection select:focus ~ span::before {
+    width: 100%;
+}
+
+.description {
+    position: relative;
+    margin: 30px 0;
+}
+
+.description textarea {
+    width: 100%;
+    height: 150px;
+    resize: none;
+    outline: none;
+    color: black;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    border-color: #adadad;
+    padding: 3px;
+}
+
+.description textarea::placeholder {
+    font-size: 20px;
+    color: #adadad;
+    padding-left: 2px;
+}
+
+.message {
+    color: rgb(247, 47, 47);
+    position: absolute;
+    top: 42px;
+    padding-left: 5px;
+    font-size: 12px;
+}
+
+.message_checkbox {
+    position: static;
+    font-size: medium;
+}
+
+#user_info {
+    display: none;
+    background-color: white;
+    font-size: 25px;
+    padding-top: 25px;
+}
