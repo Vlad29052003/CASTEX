@@ -2,8 +2,9 @@ function signUp() {
     let server = window.location.protocol + '//' + window.location.host + "/api/user/signUp";
     let hash = CryptoJS.SHA256(password).toString();
     hash = hash.substring(0, 255);
-    let gender = "f";
-    if(isMale.checked) gender = "m"
+    let gender = "F";
+    if(isMale.checked) gender = "M";
+    let authority = "USER";
 
     const credentials = {
         email: email.value,
@@ -12,7 +13,8 @@ function signUp() {
         lastName: lastName.value,
         address: address.value,
         zipCode: zip.value,
-        gender: gender
+        gender: gender,
+        authority: authority
     };
 
     fetch(server, {

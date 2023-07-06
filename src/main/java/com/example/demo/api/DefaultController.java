@@ -2,6 +2,7 @@ package com.example.demo.api;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class DefaultController {
@@ -11,22 +12,22 @@ public class DefaultController {
         return "forward:/index.html";
     }
 
-    @GetMapping(path = { "/login" })
+    @GetMapping("/login")
     public String login() {
         return "forward:/client_login.html";
     }
 
-    @GetMapping(path = { "/signup" })
+    @GetMapping("/signup")
     public String signup() {
         return "forward:/client_signup.html";
     }
 
-    @GetMapping(path = { "/help" })
+    @GetMapping("/help")
     public String help() {
         return "forward:/help.html";
     }
 
-    @GetMapping(path = { "/cart" })
+    @GetMapping("/cart")
     public String cart() {
         return "forward:/cart.html";
     }

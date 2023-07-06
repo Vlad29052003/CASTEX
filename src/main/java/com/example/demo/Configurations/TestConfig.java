@@ -1,8 +1,9 @@
 package com.example.demo.Configurations;
 
+import com.example.demo.entities.Authority;
+import com.example.demo.entities.Gender;
 import com.example.demo.entities.UserEntity;
 import com.example.demo.repositories.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -23,7 +24,8 @@ public class TestConfig {
                     "ln1",
                     "address 1",
                     "zip1",
-                    "m");
+                    Gender.M,
+                    Authority.USER);
             UserEntity u2 = new UserEntity(
                     "u2@email.com",
                     "pass2",
@@ -31,7 +33,8 @@ public class TestConfig {
                     "ln2",
                     "address 2",
                     "zip2",
-                    "f");
+                    Gender.F,
+                    Authority.USER);
             userRepository.saveAllAndFlush(List.of(u1, u2));
         };
     }
