@@ -1,4 +1,4 @@
-package com.example.demo.Configurations;
+package com.example.demo.configurations;
 
 import com.example.demo.entities.Authority;
 import com.example.demo.entities.Gender;
@@ -8,8 +8,6 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import java.sql.Date;
-import java.time.LocalDate;
 import java.util.List;
 
 @Configuration

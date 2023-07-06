@@ -1,9 +1,13 @@
 package com.example.demo.services;
 
+import com.example.demo.authentication.AuthenticationRequest;
+import com.example.demo.authentication.AuthenticationResponse;
 import com.example.demo.entities.UserEntity;
 import com.example.demo.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -16,10 +20,16 @@ import java.util.Optional;
 @Service
 public class UserService implements UserDetailsService {
     private final UserRepository userRepository;
+    private final JwtService jwtService;
+    private final AuthenticationManager authenticationManager;
 
     @Autowired
-    public UserService(UserRepository userRepository) {
+    public UserService(UserRepository userRepository,
+                       JwtService jwtService,
+                       AuthenticationManager authenticationManager) {
         this.userRepository = userRepository;
+        this.jwtService = jwtService;
+        this.authenticationManager = authenticationManager;
     }
 
     public ResponseEntity<List<UserEntity>> getAll() {
@@ -34,15 +44,16 @@ public class UserService implements UserDetailsService {
         return ResponseEntity.ok("User successfully created!");
     }
 
-    public ResponseEntity<?> logIn(String email, String hashedPassword) {
-        Optional<UserEntity> user = userRepository.findAll().stream()
-                .filter(u -> u.getEmail().equals(email)).findFirst();
-        if(user.isEmpty()) return ResponseEntity.badRequest()
-                .body("This email is not associated with any accounts!");
-        UserEntity u = user.get();
-        if(!hashedPassword.equals(u.getPassword())) return ResponseEntity
-                .badRequest().body("Incorrect password!");
-        return ResponseEntity.ok(u);
+    public ResponseEntity<AuthenticationResponse> logIn(AuthenticationRequest request) {
+        authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(
+                        request.getEmail(),
+                        request.getPassword()
+                )
+        );
+        UserEntity user = userRepository.findById(request.getEmail()).orElseThrow(() -> new UsernameNotFoundException("Invalid email!"));
+        String token = jwtService.generateToken(user);
+        return ResponseEntity.ok(new AuthenticationResponse(token));
     }
 
     @Transactional
