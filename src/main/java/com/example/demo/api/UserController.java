@@ -4,6 +4,8 @@ import com.example.demo.authentication.AuthenticationRequest;
 import com.example.demo.authentication.AuthenticationResponse;
 import com.example.demo.entities.UserEntity;
 import com.example.demo.services.UserService;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -18,6 +20,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.DeleteMapping;
 
 import javax.naming.AuthenticationException;
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -44,22 +47,31 @@ public class UserController {
     public ResponseEntity<?> logIn(@RequestBody AuthenticationRequest request) {
         try {
             return userService.logIn(request);
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             return ResponseEntity.badRequest().body("Invalid credentials!");
         }
     }
 
-    @PutMapping("/{email}")
-    @Transactional
-    public ResponseEntity<?> update(@PathVariable("email") String email,
-                                    @RequestBody UserEntity userEntity) {
-        return userService.update(email, userEntity);
+    @PostMapping("/logOut")
+    public ResponseEntity<?> logOut(@RequestBody String token) {
+        try {
+            return userService.logOut(token);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Invalid token!");
+        }
     }
 
-    @DeleteMapping("/{email}")
+    @PutMapping("/{token}")
     @Transactional
-    public ResponseEntity<?> delete(@PathVariable("email") String email) {
-        return userService.delete(email);
+    public ResponseEntity<?> update(
+            @PathVariable("token") String token,
+            @RequestBody UserEntity userEntity) {
+        return userService.update(token, userEntity);
+    }
+
+    @DeleteMapping(path = {"", "/"})
+    @Transactional
+    public ResponseEntity<?> delete(@RequestBody String token) {
+        return userService.delete(token);
     }
 }

@@ -1,5 +1,8 @@
 package com.example.demo.services;
 
+import com.example.demo.entities.JwtToken;
+import com.example.demo.entities.UserEntity;
+import com.example.demo.repositories.JwtTokenRepository;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -10,12 +13,18 @@ import org.springframework.stereotype.Service;
 
 import java.security.Key;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 
 @Service
 public class JwtService {
     private final String KEY = "3762533764314C4257736361674C6641726469673146454E6971736B48665A4346614C645142796C6A7944456D6A2B414C375A674D43717367426E7A4B4D4B620D0A";
+    private final JwtTokenRepository tokenRepository;
+
+    public JwtService(JwtTokenRepository tokenRepository) {
+        this.tokenRepository = tokenRepository;
+    }
 
     public String extractEmail(String jwtToken) {
         return extractClaim(jwtToken, Claims::getSubject);
@@ -70,5 +79,27 @@ public class JwtService {
     private Key getSignInKey() {
         byte[] keyBytes = Decoders.BASE64.decode(KEY);
         return Keys.hmacShaKeyFor(keyBytes);
+    }
+
+    public JwtToken saveToken(String token, UserEntity user) {
+        JwtToken jwtToken = new JwtToken(token, user);
+        return tokenRepository.saveAndFlush(jwtToken);
+    }
+
+    public JwtToken find(String token) {
+        return tokenRepository.findById(token).orElse(null);
+    }
+
+    public void deleteToken(String token) {
+        if (tokenRepository.existsById(token))
+            tokenRepository.deleteById(token);
+    }
+
+    public List<JwtToken> findAllValidTokenByUser(String email) {
+        return tokenRepository.findAllValidTokenByUser(email);
+    }
+
+    public List<JwtToken> saveAll(List<JwtToken> validUserTokens) {
+        return tokenRepository.saveAllAndFlush(validUserTokens);
     }
 }

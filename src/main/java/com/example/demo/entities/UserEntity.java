@@ -1,14 +1,17 @@
 package com.example.demo.entities;
 
+import com.example.demo.entities.enums.Authority;
+import com.example.demo.entities.enums.Gender;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.sql.Date;
 import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
@@ -26,6 +29,9 @@ public class UserEntity implements UserDetails {
     private Gender gender;
     @Enumerated(EnumType.STRING)
     private Authority authority;
+    @OneToMany
+    @JsonIgnore
+    private List<JwtToken> tokens;
 
     public UserEntity(String email, String hashedPassword, String firstName,
                       String lastName, String address, String zipCode,
@@ -135,37 +141,54 @@ public class UserEntity implements UserDetails {
     }
 
     @Override
+    @JsonIgnore
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority(authority.name()));
     }
 
     @Override
+    @JsonIgnore
     public String getPassword() {
         return hashedPassword;
     }
 
     @Override
+    @JsonIgnore
     public String getUsername() {
         return email;
     }
 
     @Override
+    @JsonIgnore
     public boolean isAccountNonExpired() {
         return true;
     }
 
     @Override
+    @JsonIgnore
     public boolean isAccountNonLocked() {
         return true;
     }
 
     @Override
+    @JsonIgnore
     public boolean isCredentialsNonExpired() {
         return true;
     }
 
     @Override
+    @JsonIgnore
     public boolean isEnabled() {
         return true;
+    }
+
+    @JsonIgnore
+    public List<JwtToken> getTokens() {
+        return tokens;
+    }
+
+    @JsonIgnore
+    public void setTokens(List<JwtToken> tokens) {
+        this.tokens = tokens;
     }
 }

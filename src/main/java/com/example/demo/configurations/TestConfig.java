@@ -1,7 +1,7 @@
 package com.example.demo.configurations;
 
-import com.example.demo.entities.Authority;
-import com.example.demo.entities.Gender;
+import com.example.demo.entities.enums.Authority;
+import com.example.demo.entities.enums.Gender;
 import com.example.demo.entities.UserEntity;
 import com.example.demo.repositories.UserRepository;
 import org.springframework.boot.CommandLineRunner;

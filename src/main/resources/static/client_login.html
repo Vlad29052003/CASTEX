@@ -15,12 +15,14 @@
     <div class="form_div">
         <form>
             <div class="field">
-                <input type="text" required>
+                <input type="text" id="c_li_email">
                 <label>Email</label>
+                <div class="message" id="c_li_email_message"></div>
             </div>
             <div class="field">
-                <input type="password" required>
+                <input type="password" id="c_li_password">
                 <label>Password</label>
+                <div class="message" id="c_li_password_message"></div>
             </div>
             <button id="logIn">Log In</button>
             <div class="links">Don't have an account? <a href="#" onclick="redirectToSingUp(); return false;" class="link_text"><i>Sign up</i></a>
@@ -29,7 +31,9 @@
     </div>
 </div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
 <script src="Scripts/redirect.js"></script>
+<script src="Scripts/check_fields_log_in.js"></script>
 
 </body>
 </html>

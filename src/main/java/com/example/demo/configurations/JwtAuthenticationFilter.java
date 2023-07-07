@@ -1,7 +1,8 @@
 package com.example.demo.configurations;
 
+import com.example.demo.entities.JwtToken;
+import com.example.demo.repositories.UserRepository;
 import com.example.demo.services.JwtService;
-import com.example.demo.services.UserService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -11,6 +12,7 @@ import org.springframework.lang.NonNull;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
@@ -20,12 +22,12 @@ import java.io.IOException;
 @Component
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
     private final JwtService jwtService;
-    private final UserService userService;
+    private final UserRepository userRepository;
 
     @Autowired
-    public JwtAuthenticationFilter(JwtService jwtService, UserService userService) {
+    public JwtAuthenticationFilter(JwtService jwtService, UserRepository userRepository) {
         this.jwtService = jwtService;
-        this.userService = userService;
+        this.userRepository = userRepository;
     }
 
 
@@ -44,8 +46,10 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         jwtToken = authHeader.substring(7);
         email = jwtService.extractEmail(jwtToken);
         if (email != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-            UserDetails userDetails = userService.getByEmail(email);
-            if (jwtService.isValid(jwtToken, userDetails)) {
+            UserDetails userDetails = userRepository.findById(email).orElseThrow(() -> new UsernameNotFoundException(""));
+            JwtToken token = jwtService.find(jwtToken);
+            boolean isValid = token != null && !token.isExpired() && !token.isRevoked();
+            if (jwtService.isValid(jwtToken, userDetails) && isValid) {
                 UsernamePasswordAuthenticationToken authenticationToken =
                         new UsernamePasswordAuthenticationToken(
                                 userDetails,

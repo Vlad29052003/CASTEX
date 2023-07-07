@@ -1,5 +1,5 @@
 let button = document.getElementById("myBtn");
-button.addEventListener("click", checkElements);
+button.addEventListener("click", checkSignUpElements);
 
 
 // get some variables for each field in the sign-up form easier readability
@@ -19,7 +19,7 @@ let isFemale = document.getElementById("c_female");
  * valid it creates an alert window
  * @param {*} event is the event
  */
-function checkElements(event) {
+function checkSignUpElements(event) {
   event.preventDefault();
 
   let c0 = checkEmail(email.value);
