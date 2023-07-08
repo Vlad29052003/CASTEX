@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <title>CASTEX</title>
     <link rel="icon" th:href="@{/Images/icon.png}">
     <link rel="stylesheet" type="text/css" th:href="@{/Styles/menu_style.css}">
@@ -10,7 +11,7 @@
 
 <body>
 
-<header th:replace="~{fragments/header :: header}"> </header>
+<header th:replace="~{fragments/header :: header}"></header>
 
 <div class="flex-wrapper">
     <div class="container">
@@ -53,22 +54,23 @@
                 <td class="help">
                     <h4>Need Help?</h4>
                     <p class="justify">
-                        You can contact us via email or phone or at our offices Moday to Friday between 8 am an 16 pm.
+                        You can contact us via email or phone or at our offices Monday to Friday between 8 am an 16 pm.
                         Our agents are available 24/7. We hope that your problem gets solved as soon as possible!
                     </p>
                 </td>
                 <td class="complaints">
                     <h4>Have a Complaint?</h4>
                     <p class="justify">
-                        We are sorry to hear that! You can leave us an email and we will try to solve your issue. You
-                        can also file a written complaint at our offices from Moday to Friday between 8 am an 16 pm.
+                        We are sorry to hear that! You can leave us an email, and we will try to solve your issue. You
+                        can also file a written complaint at our offices from Monday to Friday between 8 am an 16 pm.
                     </p>
                 </td>
                 <td class="returns">
                     <h4>Return a Product?</h4>
                     <p class="justify">
                         Returns without a valid reason are possible within the first 14 days after the purchase. In case
-                        of a return, please send us an email and specify the order number and the product(s) you want to
+                        of a return, please consider emailing us and specify the order number and the product(s) you
+                        want to
                         return.
                     </p>
                 </td>
@@ -78,7 +80,7 @@
 
     </div>
 
-    <footer th:replace="~{fragments/footer :: footer}"> </footer>
+    <footer th:replace="~{fragments/footer :: footer}"></footer>
 </div>
 
 <script th:src="@{/Scripts/redirect.js}"></script>
