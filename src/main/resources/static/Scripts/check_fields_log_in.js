@@ -4,7 +4,7 @@ logInButton.addEventListener("click", checkLogInElements);
 let email = document.getElementById("c_li_email");
 let password = document.getElementById("c_li_password");
 
-function checkLogInElements(event) {
+async function checkLogInElements(event) {
     event.preventDefault();
 
     let c0 = checkLogInEmail(email.value);
@@ -12,13 +12,12 @@ function checkLogInElements(event) {
     let correct = c0 && c1;
 
     if (correct === true) {
-        let hash = CryptoJS.SHA256(password).toString();
-        hash = hash.substring(0, 255);
+        let encryptedPassword = await encrypt(JSON.stringify(password.value));
         const authenticationRequest = {
             email: email.value,
-            password: hash
+            password: encryptedPassword
         };
-        logIn(authenticationRequest);
+        await logIn(authenticationRequest);
     }
 }
 
@@ -36,6 +35,10 @@ function checkLogInPassword(password) {
         appendErrorMessage("This field is required!", "c_li_password_message", 1);
         return false;
     }
+    if (password.length >= 200) {      //required field check
+        appendErrorMessage("Maximum 200 characters!", "c_li_password_message", 1);
+        return false;
+    }
     appendErrorMessage("", "c_li_password_message", 1);
     return true;
 }
@@ -44,35 +47,31 @@ function appendErrorMessage(message, id, position) {
     let div = document.getElementById(id);
     let inputs = document.getElementsByClassName("field");
     div.innerHTML = message;
-    if(message.length > 0) {
+    if (message.length > 0) {
         div.style.color = "red";
         inputs[position].style.borderColor = 'red';
-    }
-    else {
+    } else {
         inputs[position].style.borderColor = '#adadad';
     }
 }
 
-function logIn(authenticationRequest) {
-    let server = window.location.protocol + '//' + window.location.host + "/api/user/logIn";
-
-    fetch(server, {
+async function logIn(authenticationRequest) {
+    fetch(server + "/api/user/logIn", {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(authenticationRequest)
     }).then(res => {
-        if(res.ok) {
+        if (res.ok) {
             res.json().then(
                 data => {
                     let token = data.token;
-                    document.cookie = `${"jwtCookie"}=${token}; Secure; HttpOnly; SameSite=Strict; Path=/`;
+                    document.cookie = `jwtCookie=${token}; Secure; HttpOnly; SameSite=Strict; Path=/`;
                     alert("Successfully logged in!\n" + token);
                 }
             )
-        }
-        else {
+        } else {
             res.text().then(
                 data => {
                     appendErrorMessage(data, "c_li_email_message", 0);
@@ -84,4 +83,3 @@ function logIn(authenticationRequest) {
         console.error('Error:', error);
     });
 }
-

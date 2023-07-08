@@ -20,7 +20,7 @@ import java.util.Objects;
 public class UserEntity implements UserDetails {
     @Id
     private String email;
-    private String hashedPassword;
+    private String password;
     private String firstName;
     private String lastName;
     private String address;
@@ -33,11 +33,9 @@ public class UserEntity implements UserDetails {
     @JsonIgnore
     private List<JwtToken> tokens;
 
-    public UserEntity(String email, String hashedPassword, String firstName,
-                      String lastName, String address, String zipCode,
-                      Gender gender, Authority authority) {
+    public UserEntity(String email, String password, String firstName, String lastName, String address, String zipCode, Gender gender, Authority authority) {
         this.email = email;
-        this.hashedPassword = hashedPassword;
+        this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
         this.address = address;
@@ -57,12 +55,13 @@ public class UserEntity implements UserDetails {
         this.email = email;
     }
 
-    public String getHashedPassword() {
-        return hashedPassword;
+    @Override
+    public String getPassword() {
+        return password;
     }
 
-    public void setHashedPassword(String hashedPassword) {
-        this.hashedPassword = hashedPassword;
+    public void setPassword(String hashedPassword) {
+        this.password = hashedPassword;
     }
 
     public String getFirstName() {
@@ -115,16 +114,7 @@ public class UserEntity implements UserDetails {
 
     @Override
     public String toString() {
-        return "UserEntity{" +
-                "email='" + email + '\'' +
-                ", hashedPassword='" + hashedPassword + '\'' +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", address='" + address + '\'' +
-                ", zipCode='" + zipCode + '\'' +
-                ", gender=" + gender +
-                ", authority=" + authority +
-                '}';
+        return "UserEntity{" + "email='" + email + '\'' + ", hashedPassword='" + password + '\'' + ", firstName='" + firstName + '\'' + ", lastName='" + lastName + '\'' + ", address='" + address + '\'' + ", zipCode='" + zipCode + '\'' + ", gender=" + gender + ", authority=" + authority + '}';
     }
 
     @Override
@@ -132,24 +122,18 @@ public class UserEntity implements UserDetails {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         UserEntity that = (UserEntity) o;
-        return Objects.equals(email, that.email) && Objects.equals(hashedPassword, that.hashedPassword) && Objects.equals(firstName, that.firstName) && Objects.equals(lastName, that.lastName) && Objects.equals(address, that.address) && Objects.equals(zipCode, that.zipCode) && gender == that.gender && authority == that.authority;
+        return Objects.equals(email, that.email) && Objects.equals(password, that.password) && Objects.equals(firstName, that.firstName) && Objects.equals(lastName, that.lastName) && Objects.equals(address, that.address) && Objects.equals(zipCode, that.zipCode) && gender == that.gender && authority == that.authority;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(email, hashedPassword, firstName, lastName, address, zipCode, gender, authority);
+        return Objects.hash(email, password, firstName, lastName, address, zipCode, gender, authority);
     }
 
     @Override
     @JsonIgnore
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority(authority.name()));
-    }
-
-    @Override
-    @JsonIgnore
-    public String getPassword() {
-        return hashedPassword;
     }
 
     @Override

@@ -2,10 +2,8 @@ package com.example.demo.entities;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
-import java.util.HashSet;
 import java.util.Objects;
 
 @Entity
@@ -14,13 +12,11 @@ public class JwtToken {
     private String token;
     @ManyToOne
     private UserEntity user;
-    private boolean expired;
     private boolean revoked;
 
     public JwtToken(String token, UserEntity user) {
         this.token = token;
         this.user = user;
-        this.expired = false;
         this.revoked = false;
     }
 
@@ -42,14 +38,6 @@ public class JwtToken {
         this.user = user;
     }
 
-    public boolean isExpired() {
-        return expired;
-    }
-
-    public void setExpired(boolean expired) {
-        this.expired = expired;
-    }
-
     public boolean isRevoked() {
         return revoked;
     }
@@ -63,12 +51,12 @@ public class JwtToken {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         JwtToken jwtToken = (JwtToken) o;
-        return expired == jwtToken.expired && revoked == jwtToken.revoked && Objects.equals(token, jwtToken.token) && Objects.equals(user, jwtToken.user);
+        return revoked == jwtToken.revoked && Objects.equals(token, jwtToken.token) && Objects.equals(user, jwtToken.user);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(token, user, expired, revoked);
+        return Objects.hash(token, user, revoked);
     }
 
     @Override
@@ -76,7 +64,6 @@ public class JwtToken {
         return "JwtToken{" +
                 "token='" + token + '\'' +
                 ", user=" + user +
-                ", expired=" + expired +
                 ", revoked=" + revoked +
                 '}';
     }

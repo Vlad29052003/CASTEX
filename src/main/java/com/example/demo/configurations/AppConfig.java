@@ -11,6 +11,7 @@ import org.springframework.security.config.annotation.authentication.configurati
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
@@ -43,7 +44,7 @@ public class AppConfig {
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-        return new SkipPasswordEncoder();
+        return new BCryptPasswordEncoder();
     }
 
     //todo remove for deployment

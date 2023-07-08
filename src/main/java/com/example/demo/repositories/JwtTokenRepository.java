@@ -10,7 +10,7 @@ public interface JwtTokenRepository extends JpaRepository<JwtToken, String> {
     @Query(value = """
       select t from JwtToken t inner join UserEntity u\s
       on t.user.email = u.email\s
-      where u.email = :email and t.expired = false and t.revoked = false\s
+      where u.email = :email and t.revoked = false\s
       """)
     List<JwtToken> findAllValidTokenByUser(String email);
 }

@@ -1,15 +1,16 @@
 package com.example.demo.api;
 
+import com.example.demo.configurations.RSAUtils;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class DefaultController {
 
     @GetMapping(path = { "", "/" })
     public String home() {
-        return "forward:/index.html";
+        return "index";
     }
 
     @GetMapping("/login")
@@ -24,11 +25,16 @@ public class DefaultController {
 
     @GetMapping("/help")
     public String help() {
-        return "forward:/help.html";
+        return "help";
     }
 
     @GetMapping("/cart")
     public String cart() {
-        return "forward:/cart.html";
+        return "cart";
+    }
+
+    @GetMapping("/get-public-key")
+    public ResponseEntity<String> getPublicKey() {
+        return ResponseEntity.ok(RSAUtils.getPublicKey());
     }
 }

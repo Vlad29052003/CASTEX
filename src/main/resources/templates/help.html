@@ -2,41 +2,16 @@
 <html>
 <head>
     <title>CASTEX</title>
-    <link rel="icon" href="Images/icon.png">
-    <link rel="stylesheet" type="text/css" href="Styles/menu_style.css">
-    <link rel="stylesheet" type="text/css" href="Styles/footer_style.css">
-    <link rel="stylesheet" type="text/css" href="Styles/help_style.css">
+    <link rel="icon" th:href="@{/Images/icon.png}">
+    <link rel="stylesheet" type="text/css" th:href="@{/Styles/menu_style.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/Styles/footer_style.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/Styles/help_style.css}">
 </head>
-<header class="menu">
-    <div class="dummy"></div>
-    <div class="left_menu hover"><a href="#" onclick="redirectToIndex(); return false;">Products</a></div>
-    <div class="dummy"></div>
-    <div class="middle_menu hover"><a href="#" onclick="redirectToIndex(); return false;"><img src="Images/logo.png" class="logo"></a></div>
-    <div class="dummy"></div>
-    <div class="hover" id="has_submenu">
-        <img src="Images/account.png">
-        <div class="submenu">
-            <ul>
-                <div class="block"><a href="#" onclick="redirectToLogIn(); return false;">
-                    <li>Log In</li>
-                </a></div>
-                <div class="block"><a href="#" onclick="redirectToIndex(); return false;">
-                    <li>Profile</li>
-                </a></div>
-                <div class="block"><a href="#" onclick="redirectToIndex(); return false;">
-                    <li>Shipping Details</li>
-                </a></div>
-                <div class="block"><a href="#" onclick="redirectToIndex(); return false;">
-                    <li>Order History</li>
-                </a></div>
-            </ul>
-        </div>
-    </div>
-    <div class="hover"><a href="#" onclick="redirectToCart(); return false;"><img src="Images/cart.png"></a></div>
-    <div class="hover"><a href="#" onclick="redirectToHelp(); return false;"><img src="Images/help.png"></a></div>
-    <div class="dummy"></div>
-</header>
+
 <body>
+
+<header th:replace="~{fragments/header :: header}"> </header>
+
 <div class="flex-wrapper">
     <div class="container">
 
@@ -103,26 +78,10 @@
 
     </div>
 
-    <div class="footer">
-        <table>
-            <tr>
-                <td rowspan="3" class="f_left"><img src="Images/logo.png" alt="Back to the top"></td>
-                <td class="f_mid1">Phone: (+40) 700 000 000</td>
-                <td class="f_mid2">Email: castex@contact.com</td>
-                <td rowspan="3" class="f_right"><a href="#top"><img src="Images/arrow_up.png" alt="Back to the top"></a>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2" class="f_mid">Address: Mekelweg 5, 2628 CD Delft, the Netherlands</td>
-            </tr>
-            <tr>
-                <td colspan="2" class="f_mid">© Castex, Castex.com, Inc. or its partners</td>
-            </tr>
-        </table>
-    </div>
+    <footer th:replace="~{fragments/footer :: footer}"> </footer>
 </div>
 
-<script src="Scripts/redirect.js"></script>
+<script th:src="@{/Scripts/redirect.js}"></script>
 
 </body>
 

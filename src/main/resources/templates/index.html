@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+    <title>CASTEX</title>
+    <link rel="icon" th:href="@{/Images/icon.png}">
+    <link rel="stylesheet" type="text/css" th:href="@{/Styles/menu_style.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/Styles/footer_style.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/Styles/filter.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/Styles/products.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+
+<header th:replace="~{fragments/header :: header}"></header>
+
+<div class="flex-wrapper">
+    <div class="container">
+        <table>
+            <tr>
+                <td class="left_filter" rowspan="100%">
+                    <div th:replace="~{fragments/filter :: filter}"></div>
+                </td>
+
+                <td class="b_mid" rowspan="100%">
+                    <div th:replace="~{fragments/catalog_item :: item}"></div>
+                    <div th:replace="~{fragments/catalog_item :: item}"></div>
+                    <div th:replace="~{fragments/catalog_item :: item}"></div>
+                    <div th:replace="~{fragments/catalog_item :: item}"></div>
+                    <div th:replace="~{fragments/catalog_item :: item}"></div>
+                    <div th:replace="~{fragments/catalog_item :: item}"></div>
+                    <div th:replace="~{fragments/catalog_item :: item}"></div>
+                    <div th:replace="~{fragments/catalog_item :: item}"></div>
+                    <div th:replace="~{fragments/catalog_item :: item}"></div>
+                    <div th:replace="~{fragments/catalog_item :: item}"></div>
+                    <div th:replace="~{fragments/catalog_item :: item}"></div>
+                    <div th:replace="~{fragments/catalog_item :: item}"></div>
+                    <div th:replace="~{fragments/catalog_item :: item}"></div>
+                    <div th:replace="~{fragments/catalog_item :: item}"></div>
+                    <div th:replace="~{fragments/catalog_item :: item}"></div>
+                    <div th:replace="~{fragments/catalog_item :: item}"></div>
+                </td>
+
+            </tr>
+
+        </table>
+
+
+    </div>
+
+    <footer th:replace="~{fragments/footer :: footer}"></footer>
+
+</div>
+
+<script th:src="@{/Scripts/redirect.js}"></script>
+
+</body>
+
+
+</html>
