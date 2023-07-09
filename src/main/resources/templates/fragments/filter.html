@@ -1,0 +1,140 @@
+<div class="filter" th:fragment="filter">
+    <b>Category</b>
+    <div class="selection">
+        <select name="Category" id="category" required>
+            <option selected disabled hidden>Choose a Category</option>
+            <option value="phone">Phones</option>
+            <option value="laptop">Laptops</option>
+            <option value="desktop">Desktops</option>
+            <option value="game">Computer Games</option>
+            <option value="monitor">Monitors</option>
+            <option value="tv">TVs</option>
+            <option value="headset">Headsets</option>
+            <option value="audio">Audio Devices</option>
+        </select>
+        <span></span>
+    </div>
+
+    <b class="filter_price">Max Price</b>
+
+    <div class="price_slider">
+        <input type="range" min="0" max="5000" value="50" class="slider" id="myRange1">
+    </div>
+    <b class="filter_price">Min Price</b>
+
+    <div class="price_slider">
+        <input type="range" min="0" max="5000" value="50" class="slider" id="myRange2">
+    </div>
+
+    <div class="filter_rating">
+        <b>Minimum rating</b>
+        <div class="stars1">
+            <input type="checkbox" id="rating1">
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+        </div>
+        <div class="stars2">
+            <input type="checkbox" id="rating2">
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+        </div>
+        <div class="stars3">
+            <input type="checkbox" id="rating3">
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+        </div>
+        <div class="stars4">
+            <input type="checkbox" id="rating4">
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star"></span>
+        </div>
+        <div class="stars5">
+            <input type="checkbox" id="rating5">
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+
+        </div>
+    </div>
+
+    <div class="filter_provider">
+        <b>Provider </b>
+        <br>
+
+        <div class="simple_filter"><input type="checkbox">
+            <p> &nbspProvider1</p>
+        </div>
+        <div class="simple_filter"><input type="checkbox">
+            <p> &nbspProvider2</p>
+        </div>
+        <div class="simple_filter"><input type="checkbox">
+            <p> &nbspProvider3</p>
+        </div>
+        <div class="simple_filter"><input type="checkbox">
+            <p> &nbspProvider4</p>
+        </div>
+        <div class="simple_filter"><input type="checkbox">
+            <p> &nbspProvider5</p>
+        </div>
+    </div>
+
+    <div class="filter_stock">
+        <b>Availability</b>
+        <div class="simple_filter"><input type="checkbox">
+            <p> &nbspIn stock</p>
+        </div>
+        <div class="simple_filter"><input type="checkbox">
+            <p> &nbspOut of stock</p>
+        </div>
+        <div class="simple_filter"><input type="checkbox">
+            <p> &nbspUpcoming</p>
+        </div>
+    </div>
+
+    <div class="filter_brand">
+        <b>Brand</b>
+        <div class="simple_filter"><input type="checkbox">
+            <p> &nbspBrand1</p>
+        </div>
+        <div class="simple_filter"><input type="checkbox">
+            <p> &nbspBrand2</p>
+        </div>
+        <div class="simple_filter"><input type="checkbox">
+            <p> &nbspBrand3</p>
+        </div>
+
+    </div>
+
+    <div class="filter_color">
+        <b>Color</b>
+        <div class="simple_filter"><input type="checkbox">
+            <p> &nbspBlack</p>
+        </div>
+        <div class="simple_filter"><input type="checkbox">
+            <p> &nbspGray</p>
+        </div>
+        <div class="simple_filter"><input type="checkbox">
+            <p> &nbspWhite</p>
+        </div>
+        <div class="simple_filter"><input type="checkbox">
+            <p> &nbspBlue</p>
+        </div>
+        <div class="simple_filter"><input type="checkbox">
+            <p> &nbspRed</p>
+        </div>
+    </div>
+</div>
