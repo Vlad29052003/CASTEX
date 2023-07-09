@@ -32,7 +32,10 @@ public class ProductEntity {
     @Column(name = "rating")
     private int rating;
 
-    public ProductEntity(Long id, byte[] photo, String longDescription, String shortDescription, String name, BigDecimal price, int rating) {
+    @Column(name = "stock")
+    private int stock;
+
+    public ProductEntity(Long id, byte[] photo, String longDescription, String shortDescription, String name, BigDecimal price, int rating, int stock) {
         this.id = id;
         this.photo = photo;
         this.longDescription = longDescription;
@@ -40,6 +43,7 @@ public class ProductEntity {
         this.name = name;
         this.price = price;
         this.rating = rating;
+        this.stock = stock;
     }
 
     @Override
@@ -47,13 +51,12 @@ public class ProductEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ProductEntity that = (ProductEntity) o;
-        return rating == that.rating && Objects.equals(id, that.id) && Arrays.equals(photo, that.photo) && Objects.equals(longDescription, that.longDescription) && Objects.equals(shortDescription, that.shortDescription) && Objects.equals(name, that.name) && Objects.equals(price, that.price);
+        return rating == that.rating && stock == that.stock && Objects.equals(id, that.id) && Arrays.equals(photo, that.photo) && Objects.equals(longDescription, that.longDescription) && Objects.equals(shortDescription, that.shortDescription) && Objects.equals(name, that.name) && Objects.equals(price, that.price);
     }
 
     @Override
     public int hashCode() {
-        int result = Objects.hash(id, longDescription, shortDescription, name, price, rating);
-        result = 31 * result + Arrays.hashCode(photo);
+        int result = Objects.hash(id, longDescription, shortDescription, name, price, rating, stock);
         return result;
     }
 }
