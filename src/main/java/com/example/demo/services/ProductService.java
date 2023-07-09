@@ -6,17 +6,26 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.NoSuchElementException;
 
 @Service
 public class ProductService {
 
-    @Autowired
     private ProductRepository productRepository;
 
+    @Autowired
+    public ProductService(ProductRepository productRepository) {
+        this.productRepository = productRepository;
+        saveProduct(new ProductEntity("as",null,
+                "as","sa","sa", BigDecimal.ONE,1));
+    }
+
+
+
     public ResponseEntity<ProductEntity> saveProduct(ProductEntity product) {
-        ProductEntity savedProduct = productRepository.save(product);
+        ProductEntity savedProduct = productRepository.saveAndFlush(product);
         return ResponseEntity.ok(savedProduct);
     }
 
@@ -31,6 +40,5 @@ public class ProductService {
         return ResponseEntity.ok(product);
     }
 
-    // Other methods for updating, deleting, or performing additional operations on products
 
 }

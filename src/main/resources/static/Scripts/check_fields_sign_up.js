@@ -287,7 +287,7 @@ function signUp(credentials) {
             let promise = response.text();
             if (response.ok) {
                 //TODO create successfully created page instead of alert
-                window.location.href = window.location.protocol + '//' + window.location.host + '/login';
+                window.location.href = server + '/login';
                 alert("Account successfully created");
             } else {
                 promise.then((data) => {

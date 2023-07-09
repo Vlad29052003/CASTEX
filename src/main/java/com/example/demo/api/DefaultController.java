@@ -33,6 +33,11 @@ public class DefaultController {
         return "cart";
     }
 
+    @GetMapping("/add-a-product")
+    public String addProduct() {
+        return "add_a_product";
+    }
+
     @GetMapping("/get-public-key")
     public ResponseEntity<String> getPublicKey() {
         return ResponseEntity.ok(RSAUtils.getPublicKey());
