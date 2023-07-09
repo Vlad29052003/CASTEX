@@ -15,12 +15,12 @@ public class DefaultController {
 
     @GetMapping("/login")
     public String login() {
-        return "forward:/client_login.html";
+        return "client_login";
     }
 
     @GetMapping("/signup")
     public String signup() {
-        return "forward:/client_signup.html";
+        return "client_signup";
     }
 
     @GetMapping("/help")

@@ -57,7 +57,7 @@
 
 .container .cart_button button {
     border: none;
-    border-radius: 15px 0px;
+    border-radius: 15px 0;
     outline: 0;
     padding: 12px;
     color: white;

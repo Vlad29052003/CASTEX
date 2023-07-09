@@ -7,9 +7,12 @@
     <link rel="stylesheet" type="text/css" th:href="@{/Styles/menu_style.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/Styles/footer_style.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/Styles/help_style.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/Styles/accept_cookies_style.css}">
 </head>
 
 <body>
+
+<div th:replace="~{fragments/accept_cookies :: cookies}"></div>
 
 <header th:replace="~{fragments/header :: header}"></header>
 
@@ -83,6 +86,7 @@
     <footer th:replace="~{fragments/footer :: footer}"></footer>
 </div>
 
+<script th:src="@{/Scripts/accept_cookies.js}"></script>
 <script th:src="@{/Scripts/redirect.js}"></script>
 
 </body>

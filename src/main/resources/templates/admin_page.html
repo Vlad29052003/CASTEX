@@ -3,15 +3,18 @@
 <head>
     <title>CASTEX</title>
     <meta charset="UTF-8">
-    <link rel="icon" href="../static/Images/icon.png">
-    <link rel="stylesheet" type="text/css" href="../static/Styles/menu_style.css">
-    <link rel="stylesheet" type="text/css" href="../static/Styles/footer_style.css">
-    <link rel="stylesheet" type="text/css" href="../static/Styles/filter.css">
-    <link rel="stylesheet" type="text/css" href="../static/Styles/products.css">
+    <link rel="icon" th:href="@{/Images/icon.png}">
+    <link rel="stylesheet" type="text/css" th:href="@{/Styles/menu_style.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/Styles/footer_style.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/Styles/filter.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/Styles/products.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/Styles/accept_cookies_style.css}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
+
+<div th:replace="~{fragments/accept_cookies :: cookies}"></div>
 
 <header th:replace="~{fragments/header :: header}"></header>
 
@@ -49,6 +52,7 @@
     <footer th:replace="~{fragments/footer :: footer}"></footer>
 </div>
 
+<script th:src="@{/Scripts/accept_cookies.js}"></script>
 <script th:src="@{/Scripts/redirect.js}"></script>
 
 </body>
