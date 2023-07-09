@@ -33,7 +33,7 @@ public class RSAUtils implements InitializingBean {
     }
 
     private void generateKeyPairs() throws NoSuchAlgorithmException {
-        for(int i = 0; i < 100; i++) {
+        for (int i = 0; i < 100; i++) {
             new Thread(() -> {
                 KeyPairGenerator kpg = null;
                 try {
@@ -44,7 +44,7 @@ public class RSAUtils implements InitializingBean {
                 kpg.initialize(2048);
                 KEYS.add(kpg.generateKeyPair());
                 counter++;
-                if(counter == 99) System.out.println("Key generation complete!");
+                if (counter == 99) System.out.println("Key generation complete!");
             }).start();
         }
     }
@@ -80,13 +80,11 @@ public class RSAUtils implements InitializingBean {
     }
 
     private static void changeIndex() {
-        int newIndex = (int)(Math.random() * 100);
-        if(newIndex == index) {
-            changeIndex();
-            return;
+        int newIndex = (int) (Math.random() * 100);
+        while (newIndex == index) {
+            newIndex = (int) (Math.random() * 100);
         }
         index = newIndex;
-        System.out.println("Key index " + index);
     }
 
 }
