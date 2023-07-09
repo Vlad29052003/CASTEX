@@ -1,0 +1,30 @@
+<header class="menu" th:fragment="header">
+    <div class="dummy"></div>
+    <div class="left_menu hover"><a href="#" onclick="redirectToIndex(); return false;">Products</a></div>
+    <div class="dummy"></div>
+    <div class="middle_menu hover"><a href="#" onclick="redirectToIndex(); return false;"><img src="Images/logo.png"
+                                                                                               class="logo"></a></div>
+    <div class="dummy"></div>
+    <div class="hover" id="has_submenu">
+        <img src="Images/account.png">
+        <div class="submenu">
+            <ul>
+                <div class="block"><a href="#" onclick="redirectToLogIn(); return false;">
+                    <li>Log In</li>
+                </a></div>
+                <div class="block"><a href="#" onclick="redirectToIndex(); return false;">
+                    <li>Profile</li>
+                </a></div>
+                <div class="block"><a href="#" onclick="redirectToIndex(); return false;">
+                    <li>Shipping Details</li>
+                </a></div>
+                <div class="block"><a href="#" onclick="redirectToIndex(); return false;">
+                    <li>Order History</li>
+                </a></div>
+            </ul>
+        </div>
+    </div>
+    <div class="hover"><a href="#" onclick="redirectToCart(); return false;"><img src="Images/cart.png"></a></div>
+    <div class="hover"><a href="#" onclick="redirectToHelp(); return false;"><img src="Images/help.png"></a></div>
+    <div class="dummy"></div>
+</header>

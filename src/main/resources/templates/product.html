@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>CASTEX</title>
+    <link rel="icon" th:href="@{/Images/icon.png}">
+    <link rel="stylesheet" type="text/css" th:href="@{/Styles/menu_style.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/Styles/footer_style.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/Styles/product.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/Styles/accept_cookies_style.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+
+<body>
+
+<div th:replace="~{fragments/accept_cookies :: cookies}"></div>
+
+<header th:replace="~{fragments/header :: header}"></header>
+
+<div class="flex-wrapper">
+    <div class="container">
+
+        <div class="single-product">
+
+            <h1>Razer Headphones</h1>
+            <div class="col-1">
+                <img src="../static/Images/headphones.png">
+            </div>
+            <div class="col-2">
+                <p>Headphones / Headphones On-Ear</p>
+                <h4>49.99€</h4>
+                <div class="rate">
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star"></span>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="selection">
+                    <select name="Category" id="category" required>
+                        <option selected disabled hidden>Choose Color</option>
+                        <option value="phone">Black</option>
+                        <option value="laptop">White</option>
+                        <option value="desktop">Red</option>
+                    </select>
+                    <span></span>
+
+                </div>
+                <div class="field">
+                    <input type="number" step="1" min="1" required>
+                    <span></span>
+                    <label>Amount</label>
+                </div>
+                <div class="cart_button">
+                    <button type="button">ADD TO CART</button>
+                </div>
+
+            </div>
+
+            <div class="details">
+
+                <h3>Product Details</h3>
+                <p>The headset is a lightweight and comfortable device that sits on the userEntity's ears and features
+                    built-in headphones and a microphone for hands-free communication and audio playback. The
+                    adjustable
+                    headband and soft ear cups ensure a secure fit, while the built-in volume controls and mute
+                    button
+                    provide easy access to audio settings. The headset is compatible with a variety of devices and
+                    can
+                    be used for phone calls, video conferencing, and music listening.
+                </p>
+                <p>Provider: Provider1</p>
+                <div class="recommended container">
+                    <h3 style="text-align:center;">Recommended Products</h3>
+                    <table style="width: 100%;">
+                        <td class="b_mid">
+                            <div class="box">
+                                <div class="img">
+                                    <img src="../static/Images/headphones.png" alt="">
+                                </div>
+
+                                <div>
+                                    <div class="text_product1">
+                                        <div class="product_name">
+                                            <a href="product.html">Numa</a>
+                                        </div>
+                                    </div>
+                                    <h2>49.99€</h2>
+                                    <div class="rate">
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star"></span>
+                                    </div>
+                                </div>
+                                <div class="cart_button">
+                                    <button type="button">ADD TO CART</button>
+                                </div>
+                            </div>
+
+                            <div class="box">
+                                <div class="img">
+                                    <img src="../static/Images/headphones.png" alt="">
+                                </div>
+
+                                <div>
+                                    <div class="text_product1">
+                                        <div class="product_name">
+                                            <a href="product.html">Numa</a>
+                                        </div>
+                                    </div>
+                                    <h2>49.99€</h2>
+                                    <div class="rate">
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star"></span>
+                                    </div>
+                                </div>
+                                <div class="cart_button">
+                                    <button type="button">ADD TO CART</button>
+                                </div>
+                            </div>
+
+
+                            <div class="box">
+                                <div class="img">
+                                    <img src="../static/Images/headphones.png" alt="">
+                                </div>
+
+                                <div>
+                                    <div class="text_product1">
+                                        <div class="product_name">
+                                            <a href="product.html">Numa</a>
+                                        </div>
+                                    </div>
+                                    <h2>49.99€</h2>
+                                    <div class="rate">
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star"></span>
+                                    </div>
+                                </div>
+                                <div class="cart_button">
+                                    <button type="button">ADD TO CART</button>
+                                </div>
+                            </div>
+
+                            <div class="box">
+                                <div class="img">
+                                    <img src="../static/Images/headphones.png" alt="">
+                                </div>
+
+                                <div>
+                                    <div class="text_product1">
+                                        <div class="product_name">
+                                            <a href="product.html">Numa</a>
+                                        </div>
+                                    </div>
+                                    <h2>49.99€</h2>
+                                    <div class="rate">
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star"></span>
+                                    </div>
+                                </div>
+                                <div class="cart_button">
+                                    <button type="button">ADD TO CART</button>
+                                </div>
+                            </div>
+                        </td>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+
+
+    </div>
+    <footer th:replace="~{fragments/footer :: footer}"></footer>
+</div>
+
+<script th:src="@{/Scripts/accept_cookies.js}"></script>
+<script th:src="@{/Scripts/redirect.js}"></script>
+
+</body>
+
+
+</html>

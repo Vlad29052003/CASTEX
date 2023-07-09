@@ -36,3 +36,18 @@
     padding-left: 25px;
     padding-right: 25px;
 }
+
+ol {
+    list-style-position: inside;
+    padding-left: 10px;
+}
+
+h4 {
+    padding-top: 20px;
+    padding-bottom: 10px;
+    text-align: left;
+}
+
+li {
+    text-align: justify;
+}

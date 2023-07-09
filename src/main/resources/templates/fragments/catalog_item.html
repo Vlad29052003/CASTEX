@@ -1,0 +1,24 @@
+<div class="box" th:fragment="item">
+    <div class="img">
+        <img src="Images/headphones.png" alt="">
+    </div>
+
+    <div>
+        <div class="text_product1">
+            <div class="product_name">
+                <a th:href="@{/templates/product.html}">Best product ever</a>
+            </div>
+        </div>
+        <h2>49.99€</h2>
+        <div class="rate">
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star"></span>
+        </div>
+    </div>
+    <div class="cart_button">
+        <button type="button">ADD TO CART</button>
+    </div>
+</div>
