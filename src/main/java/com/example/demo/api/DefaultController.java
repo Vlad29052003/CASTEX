@@ -1,5 +1,7 @@
 package com.example.demo.api;
 
+import com.example.demo.configurations.RSAUtils;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -8,26 +10,31 @@ public class DefaultController {
 
     @GetMapping(path = { "", "/" })
     public String home() {
-        return "forward:/index.html";
+        return "index";
     }
 
-    @GetMapping(path = { "/login" })
+    @GetMapping("/login")
     public String login() {
-        return "forward:/client_login.html";
+        return "client_login";
     }
 
-    @GetMapping(path = { "/signup" })
+    @GetMapping("/signup")
     public String signup() {
-        return "forward:/client_signup.html";
+        return "client_signup";
     }
 
-    @GetMapping(path = { "/help" })
+    @GetMapping("/help")
     public String help() {
-        return "forward:/help.html";
+        return "help";
     }
 
-    @GetMapping(path = { "/cart" })
+    @GetMapping("/cart")
     public String cart() {
-        return "forward:/cart.html";
+        return "cart";
+    }
+
+    @GetMapping("/get-public-key")
+    public ResponseEntity<String> getPublicKey() {
+        return ResponseEntity.ok(RSAUtils.getPublicKey());
     }
 }

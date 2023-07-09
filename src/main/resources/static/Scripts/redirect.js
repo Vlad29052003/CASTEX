@@ -1,19 +1,25 @@
+const server = window.location.protocol + '//' + window.location.host;
+
 function redirectToIndex() {
-    window.location.href = window.location.protocol + '//' + window.location.host + '/';
+    window.location.href = server + '/';
 }
 
 function redirectToSingUp() {
-    window.location.href = window.location.protocol + '//' + window.location.host + '/signup';
+    window.location.href = server + '/signup';
 }
 
 function redirectToLogIn() {
-    window.location.href = window.location.protocol + '//' + window.location.host + '/login';
+    window.location.href = server + '/login';
 }
 
 function redirectToHelp() {
-    window.location.href = window.location.protocol + '//' + window.location.host + '/help';
+    window.location.href = server + '/help';
+}
+
+function redirectToTermsAndConditions() {
+    window.location.href = server + '/help#terms';
 }
 
 function redirectToCart() {
-    window.location.href = window.location.protocol + '//' + window.location.host + '/cart';
+    window.location.href = server + '/cart';
 }
