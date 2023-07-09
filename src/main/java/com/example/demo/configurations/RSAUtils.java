@@ -11,31 +11,48 @@ import java.security.Key;
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
 import java.security.NoSuchAlgorithmException;
-import java.security.PrivateKey;
-import java.security.PublicKey;
+import java.util.ArrayList;
+import java.util.List;
 
 @Component
 public class RSAUtils implements InitializingBean {
-    private static PrivateKey privateKey;
-    private static PublicKey publicKey;
+    private static int index = 0;
+    private static int counter = 0;
+    private static final List<KeyPair> keys = new ArrayList<>(100);
 
     @Override
-    public void afterPropertiesSet() throws NoSuchAlgorithmException {
-        generateKeyPair();
+    public void afterPropertiesSet() {
+        changeIndex();
+        new Thread(() -> {
+            try {
+                generateKeyPairs();
+            } catch (NoSuchAlgorithmException e) {
+                throw new RuntimeException(e);
+            }
+        }).start();
     }
 
-    private void generateKeyPair() throws NoSuchAlgorithmException {
-        KeyPairGenerator kpg = KeyPairGenerator.getInstance("RSA");
-        kpg.initialize(2048);
-        KeyPair kp = kpg.generateKeyPair();
-        privateKey = kp.getPrivate();
-        publicKey = kp.getPublic();
+    private void generateKeyPairs() throws NoSuchAlgorithmException {
+        for(int i = 0; i < 100; i ++) {
+            new Thread(() -> {
+                KeyPairGenerator kpg = null;
+                try {
+                    kpg = KeyPairGenerator.getInstance("RSA");
+                } catch (NoSuchAlgorithmException e) {
+                    throw new RuntimeException(e);
+                }
+                kpg.initialize(2048);
+                keys.add(kpg.generateKeyPair());
+                counter++;
+                if(counter == 99) System.out.println("Key generation complete!");
+            }).start();
+        }
     }
 
     public static String getPublicKey() {
         String key = "";
         try {
-            key = convertToPEM(publicKey);
+            key = convertToPEM(keys.get(index).getPublic());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -44,7 +61,8 @@ public class RSAUtils implements InitializingBean {
 
     public static String decrypt(byte[] data) throws Exception {
         Cipher cipher = Cipher.getInstance("RSA/ECB/PKCS1Padding");
-        cipher.init(Cipher.DECRYPT_MODE, privateKey);
+        cipher.init(Cipher.DECRYPT_MODE, keys.get(index).getPrivate());
+        changeIndex();
         return new String(cipher.doFinal(data));
     }
 
@@ -59,6 +77,16 @@ public class RSAUtils implements InitializingBean {
                 .replace("-----END PUBLIC KEY-----", "")
                 .replaceAll("\\s", ""); // Remove any additional whitespaces
         return pemString;
+    }
+
+    private static void changeIndex() {
+        int newIndex = (int)(Math.random() * 100);
+        if(newIndex == index) {
+            changeIndex();
+            return;
+        }
+        index = newIndex;
+        System.out.println("Key index " + index);
     }
 
 }

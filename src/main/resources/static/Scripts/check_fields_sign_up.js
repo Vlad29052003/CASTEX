@@ -48,6 +48,7 @@ async function checkSignUpElements(event) {
     let correct = c0 && c1 && c2 && c3 && c4 && c5 && c6 && c7 && c8;
 
     if (correct === true) {
+        await fetchAndAssignPublicKey();
         let encryptedPassword = await encrypt(JSON.stringify(password.value));
         let gender = "F";
         if (isMale.checked) gender = "M";

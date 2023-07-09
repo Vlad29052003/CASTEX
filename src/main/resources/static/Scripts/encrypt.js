@@ -1,8 +1,6 @@
 const RSAEncrypt = new JSEncrypt();
 let publicKey = "";
 
-if (publicKey.length === 0) fetchAndAssignPublicKey()
-
 async function fetchPublicKey() {
     try {
         const response = await fetch(server + '/get-public-key'); // Replace with your server endpoint

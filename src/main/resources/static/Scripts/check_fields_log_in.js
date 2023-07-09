@@ -12,6 +12,7 @@ async function checkLogInElements(event) {
     let correct = c0 && c1;
 
     if (correct === true) {
+        await fetchAndAssignPublicKey();
         let encryptedPassword = await encrypt(JSON.stringify(password.value));
         const authenticationRequest = {
             email: email.value,
