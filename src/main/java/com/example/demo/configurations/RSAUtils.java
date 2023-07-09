@@ -18,7 +18,7 @@ import java.util.List;
 public class RSAUtils implements InitializingBean {
     private static int index = 0;
     private static int counter = 0;
-    private static final List<KeyPair> keys = new ArrayList<>(100);
+    private static final List<KeyPair> KEYS = new ArrayList<>(100);
 
     @Override
     public void afterPropertiesSet() {
@@ -33,7 +33,7 @@ public class RSAUtils implements InitializingBean {
     }
 
     private void generateKeyPairs() throws NoSuchAlgorithmException {
-        for(int i = 0; i < 100; i ++) {
+        for(int i = 0; i < 100; i++) {
             new Thread(() -> {
                 KeyPairGenerator kpg = null;
                 try {
@@ -42,7 +42,7 @@ public class RSAUtils implements InitializingBean {
                     throw new RuntimeException(e);
                 }
                 kpg.initialize(2048);
-                keys.add(kpg.generateKeyPair());
+                KEYS.add(kpg.generateKeyPair());
                 counter++;
                 if(counter == 99) System.out.println("Key generation complete!");
             }).start();
@@ -52,7 +52,7 @@ public class RSAUtils implements InitializingBean {
     public static String getPublicKey() {
         String key = "";
         try {
-            key = convertToPEM(keys.get(index).getPublic());
+            key = convertToPEM(KEYS.get(index).getPublic());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -61,7 +61,7 @@ public class RSAUtils implements InitializingBean {
 
     public static String decrypt(byte[] data) throws Exception {
         Cipher cipher = Cipher.getInstance("RSA/ECB/PKCS1Padding");
-        cipher.init(Cipher.DECRYPT_MODE, keys.get(index).getPrivate());
+        cipher.init(Cipher.DECRYPT_MODE, KEYS.get(index).getPrivate());
         changeIndex();
         return new String(cipher.doFinal(data));
     }
