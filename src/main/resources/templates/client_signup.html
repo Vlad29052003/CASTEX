@@ -59,22 +59,34 @@
                 <div class="message" id="c_zip_message"></div>
             </div>
             <div class="radio_field">
-                <div>Gender:</div>
+                <div>
+                    <p>Gender:</p>
+                    <div class="message_checkbox" id="c_radio_message"></div>
+                </div>
                 <div>
                     <input class="checkboxes" type="radio" name="gender" value="male" id="c_male">
                     <label>Male</label>
-                    <div class="message_checkbox" id="c_checkbox1"></div>
                 </div>
                 <div>
                     <input class="checkboxes" type="radio" name="gender" value="female" id="c_female">
                     <label>Female</label>
-                    <div class="message" id="c_checkbox2"></div>
                 </div>
-                <div class="message" id="c_select_message"></div>
             </div>
+            <div class="checkbox_field">
+                <p>
+                    I have read and accepted
+                    <a href="#" onclick="redirectToTermsAndConditions(); return false;">Terms and Conditions</a>
+                    <div class="message_checkbox" id="c_checkbox_message"></div>
+                </p>
+                <input class="terms" id="terms_and_conditions" type="checkbox">
+            </div>
+
             <button id="myBtn">Sign Up</button>
-            <div class="links">Already have an account? <a href="#" onclick="redirectToLogIn(); return false;" class="link_text"><i>Sign
-                in</i></a></div>
+            <div class="links">Already have an account?
+                <a href="#" onclick="redirectToLogIn(); return false;" class="link_text">
+                    <i>Sign in</i>
+                </a>
+            </div>
         </form>
     </div>
 </div>

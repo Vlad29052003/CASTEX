@@ -16,6 +16,10 @@ function redirectToHelp() {
     window.location.href = server + '/help';
 }
 
+function redirectToTermsAndConditions() {
+    window.location.href = server + '/help#terms';
+}
+
 function redirectToCart() {
     window.location.href = server + '/cart';
 }

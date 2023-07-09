@@ -201,6 +201,13 @@ button:hover {
     padding-left: 2px;
 }
 
+.message_checkbox {
+    position: absolute;
+    font-size: 12px;
+    z-index: 888;
+    padding-left: 5px;
+}
+
 .message {
     color: rgb(247, 47, 47);
     position: absolute;
@@ -209,9 +216,37 @@ button:hover {
     font-size: 12px;
 }
 
-.message_checkbox {
-    position: static;
-    font-size: medium;
+.checkbox_field {
+    display: flex;
+    justify-content: space-between;
+    color: #adadad;
+    font-size: 20px;
+    accent-color: rgb(247, 47, 47);
+    padding-bottom: 25px;
+    padding-left: 5px;
+}
+
+.checkbox_field a:link {
+    color: #adadad;
+    text-decoration: underline;
+}
+
+.checkbox_field a:visited {
+    color: #adadad;
+    text-decoration: underline;
+}
+
+.checkbox_field a:hover {
+    color: #8a8989;
+    text-decoration: underline;
+}
+
+.checkbox_field {
+    text-align: left;
+}
+
+.checkbox_field input {
+    transform: scale(1.5);
 }
 
 #user_info {
