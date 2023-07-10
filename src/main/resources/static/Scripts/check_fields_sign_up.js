@@ -61,7 +61,8 @@ async function checkSignUpElements(event) {
             address: address.value,
             zipCode: zip.value,
             gender: gender,
-            authority: "USER"
+            authority: "USER",
+            verifiedEmail: false
         };
         signUp(credentials);
     }

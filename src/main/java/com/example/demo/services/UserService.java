@@ -23,13 +23,17 @@ import java.util.List;
 public class UserService implements UserDetailsService {
     private final UserRepository userRepository;
     private final JwtService jwtService;
+    private final EmailSendingService emailSendingService;
+    private final EmailVerificationService emailVerificationService;
     private final AuthenticationManager authenticationManager;
     private final PasswordEncoder passwordEncoder;
 
     @Autowired
-    public UserService(UserRepository userRepository, JwtService jwtService, AuthenticationManager authenticationManager, PasswordEncoder passwordEncoder) {
+    public UserService(UserRepository userRepository, JwtService jwtService, EmailSendingService emailSendingService, EmailVerificationService emailVerificationService, AuthenticationManager authenticationManager, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.jwtService = jwtService;
+        this.emailSendingService = emailSendingService;
+        this.emailVerificationService = emailVerificationService;
         this.authenticationManager = authenticationManager;
         this.passwordEncoder = passwordEncoder;
     }
@@ -45,6 +49,9 @@ public class UserService implements UserDetailsService {
         String decryptedPassword = RSAUtils.decrypt(decoded).trim().replace("\"", "");
         userEntity.setPassword(passwordEncoder.encode(decryptedPassword));
         userRepository.save(userEntity);
+        String uuid = emailVerificationService.generateId(userEntity.getEmail());
+        String verificationLink = "http://localhost:8080" + "/verifyEmail/" + uuid;//todo replace localhost
+        emailSendingService.sendVerificationEmail(userEntity.getEmail(), verificationLink);
         return ResponseEntity.ok("User successfully created!");
     }
 
@@ -102,5 +109,14 @@ public class UserService implements UserDetailsService {
             token.setRevoked(true);
         });
         jwtService.saveAll(validUserTokens);
+    }
+
+    public void verifyEmail(String id) {
+        String email = emailVerificationService.verifyEmail(id);
+        if(email != null) {
+            UserEntity userEntity = userRepository.findById(email).get();
+            userEntity.setVerifiedEmail(true);
+            userRepository.saveAndFlush(userEntity);
+        }
     }
 }

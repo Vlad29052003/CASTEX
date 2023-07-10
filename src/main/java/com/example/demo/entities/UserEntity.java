@@ -29,11 +29,12 @@ public class UserEntity implements UserDetails {
     private Gender gender;
     @Enumerated(EnumType.STRING)
     private Authority authority;
+    private boolean verifiedEmail;
     @OneToMany
     @JsonIgnore
     private List<JwtToken> tokens;
 
-    public UserEntity(String email, String password, String firstName, String lastName, String address, String zipCode, Gender gender, Authority authority) {
+    public UserEntity(String email, String password, String firstName, String lastName, String address, String zipCode, Gender gender, Authority authority, boolean verifiedEmail) {
         this.email = email;
         this.password = password;
         this.firstName = firstName;
@@ -42,6 +43,7 @@ public class UserEntity implements UserDetails {
         this.zipCode = zipCode;
         this.gender = gender;
         this.authority = authority;
+        this.verifiedEmail = verifiedEmail;
     }
 
     public UserEntity() {
@@ -112,24 +114,13 @@ public class UserEntity implements UserDetails {
         this.authority = authority;
     }
 
-    @Override
-    public String toString() {
-        return "UserEntity{" + "email='" + email + '\'' + ", hashedPassword='" + password + '\'' + ", firstName='" + firstName + '\'' + ", lastName='" + lastName + '\'' + ", address='" + address + '\'' + ", zipCode='" + zipCode + '\'' + ", gender=" + gender + ", authority=" + authority + '}';
+    public boolean isVerifiedEmail() {
+        return verifiedEmail;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        UserEntity that = (UserEntity) o;
-        return Objects.equals(email, that.email) && Objects.equals(password, that.password) && Objects.equals(firstName, that.firstName) && Objects.equals(lastName, that.lastName) && Objects.equals(address, that.address) && Objects.equals(zipCode, that.zipCode) && gender == that.gender && authority == that.authority;
+    public void setVerifiedEmail(boolean verifiedEmail) {
+        this.verifiedEmail = verifiedEmail;
     }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(email, password, firstName, lastName, address, zipCode, gender, authority);
-    }
-
     @Override
     @JsonIgnore
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -163,7 +154,7 @@ public class UserEntity implements UserDetails {
     @Override
     @JsonIgnore
     public boolean isEnabled() {
-        return true;
+        return verifiedEmail;
     }
 
     @JsonIgnore
@@ -174,5 +165,34 @@ public class UserEntity implements UserDetails {
     @JsonIgnore
     public void setTokens(List<JwtToken> tokens) {
         this.tokens = tokens;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        UserEntity that = (UserEntity) o;
+        return verifiedEmail == that.verifiedEmail && Objects.equals(email, that.email) && Objects.equals(password, that.password) && Objects.equals(firstName, that.firstName) && Objects.equals(lastName, that.lastName) && Objects.equals(address, that.address) && Objects.equals(zipCode, that.zipCode) && gender == that.gender && authority == that.authority && Objects.equals(tokens, that.tokens);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(email, password, firstName, lastName, address, zipCode, gender, authority, verifiedEmail, tokens);
+    }
+
+    @Override
+    public String toString() {
+        return "UserEntity{" +
+                "email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", address='" + address + '\'' +
+                ", zipCode='" + zipCode + '\'' +
+                ", gender=" + gender +
+                ", authority=" + authority +
+                ", verifiedEmail=" + verifiedEmail +
+                ", tokens=" + tokens +
+                '}';
     }
 }

@@ -75,7 +75,7 @@ async function logIn(authenticationRequest) {
         } else {
             res.text().then(
                 data => {
-                    appendErrorMessage(data, "c_li_email_message", 0);
+                    appendErrorMessage(data + " Make sure the email is verified!", "c_li_email_message", 0);
                     appendErrorMessage(data, "c_li_password_message", 1);
                 }
             )
