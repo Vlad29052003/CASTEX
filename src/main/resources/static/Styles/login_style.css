@@ -255,3 +255,29 @@ button:hover {
     font-size: 25px;
     padding-top: 25px;
 }
+
+.message_div {
+    padding: 20px;
+    background-color: white;
+    font-size: 20px;
+    list-style-position: inside;
+}
+
+.inner {
+    text-align: justify;
+    padding-bottom: 15px;
+}
+
+.message_div p,li {
+    padding-top: 15px;
+}
+
+.message_div h1 {
+    padding-top: 15px;
+    padding-bottom: 8px;
+    color: #0e8c0e;
+}
+
+.message_div button {
+    padding-top: 10px;
+}

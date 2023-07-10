@@ -286,9 +286,7 @@ function signUp(credentials) {
         .then(response => {
             let promise = response.text();
             if (response.ok) {
-                //TODO create successfully created page instead of alert
-                window.location.href = window.location.protocol + '//' + window.location.host + '/login';
-                alert("Account successfully created");
+                redirectToAccountCreated();
             } else {
                 promise.then((data) => {
                     if (data === "This email is already in use!") appendMessage("field","This email is already in use!", "c_email_message", 1, 0); else throw new Error(data);
