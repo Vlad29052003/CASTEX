@@ -41,10 +41,12 @@ public class ProductController {
     @GetMapping("/image/{id}")
     public void showProductImage(@PathVariable String id,
                                HttpServletResponse response) throws IOException {
-        response.setContentType("image/jpeg"); // Or whatever format you wanna use
+        response.setContentType("image/jpeg");
+
 
         ProductEntity product = productService.getProductById(Long.valueOf(id)).getBody();
-
+        for(byte b : product.getPhoto())
+            System.out.print(b+" ");
         InputStream is = new ByteArrayInputStream(product.getPhoto());
         IOUtils.copy(is, response.getOutputStream());
     }

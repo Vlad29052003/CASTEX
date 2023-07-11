@@ -10,7 +10,7 @@
 <!--        <div th:utext="${DefaultController.convertToHtmlImage(product.photo)}"></div>-->
 <!--        <div th:utext="${@thymeleafUtils.convertToHtmlImage(product.photo)}"></div>-->
 
-        <img class="card-img-top" th:src="@{'product/image/' + @{product.photo}}">
+        <img class="card-img-top" th:src="@{'product/image/' + @{product.id}}">
     </div>
 
     <div>
