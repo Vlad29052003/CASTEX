@@ -28,22 +28,11 @@
                 </td>
 
                 <td class="b_mid" rowspan="100%">
-                    <div th:replace="~{fragments/catalog_item :: item}"></div>
-                    <div th:replace="~{fragments/catalog_item :: item}"></div>
-                    <div th:replace="~{fragments/catalog_item :: item}"></div>
-                    <div th:replace="~{fragments/catalog_item :: item}"></div>
-                    <div th:replace="~{fragments/catalog_item :: item}"></div>
-                    <div th:replace="~{fragments/catalog_item :: item}"></div>
-                    <div th:replace="~{fragments/catalog_item :: item}"></div>
-                    <div th:replace="~{fragments/catalog_item :: item}"></div>
-                    <div th:replace="~{fragments/catalog_item :: item}"></div>
-                    <div th:replace="~{fragments/catalog_item :: item}"></div>
-                    <div th:replace="~{fragments/catalog_item :: item}"></div>
-                    <div th:replace="~{fragments/catalog_item :: item}"></div>
-                    <div th:replace="~{fragments/catalog_item :: item}"></div>
-                    <div th:replace="~{fragments/catalog_item :: item}"></div>
-                    <div th:replace="~{fragments/catalog_item :: item}"></div>
-                    <div th:replace="~{fragments/catalog_item :: item}"></div>
+
+                    <th:block th:each="product : ${products}">
+                        <div th:replace="fragments/catalog_item :: item(${product})"></div>
+                    </th:block>
+
                 </td>
             </tr>
 
@@ -58,6 +47,9 @@
 
 <script th:src="@{/Scripts/accept_cookies.js}"></script>
 <script th:src="@{/Scripts/redirect.js}"></script>
+<script th:src="@{/Scripts/add_products_to_home.js}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pako/2.0.4/pako.min.js"></script>
+
 
 </body>
 

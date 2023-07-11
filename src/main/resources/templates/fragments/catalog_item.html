@@ -1,15 +1,25 @@
-<div class="box" th:fragment="item">
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Product Details</title>
+</head>
+<body>
+<div class="box" th:fragment="item(product)">
     <div class="img">
-        <img src="Images/headphones.png" alt="">
+<!--        <img th:src="@{${product.photo}}" alt="">-->
+<!--        <div th:utext="${DefaultController.convertToHtmlImage(product.photo)}"></div>-->
+<!--        <div th:utext="${@thymeleafUtils.convertToHtmlImage(product.photo)}"></div>-->
+
+        <img class="card-img-top" th:src="@{'product/image/' + @{product.photo}}">
     </div>
 
     <div>
         <div class="text_product1">
             <div class="product_name">
-                <a th:href="@{/templates/product.html}">Best product ever</a>
+                <a th:href="@{/product/{productId}(productId=${product.id})}"><span th:text="${product.name}"></span></a>
             </div>
         </div>
-        <h2>49.99€</h2>
+        <h2><span th:text="${product.price}"></span>€</h2>
         <div class="rate">
             <span class="fa fa-star checked"></span>
             <span class="fa fa-star checked"></span>
@@ -22,3 +32,5 @@
         <button type="button">ADD TO CART</button>
     </div>
 </div>
+</body>
+</html>

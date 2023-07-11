@@ -2,10 +2,15 @@ package com.example.demo.api;
 
 import com.example.demo.entities.ProductEntity;
 import com.example.demo.services.ProductService;
+import jakarta.servlet.http.HttpServletResponse;
+import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -31,5 +36,16 @@ public class ProductController {
     public ResponseEntity<ProductEntity> getProductById(@PathVariable Long productId) {
         ResponseEntity<ProductEntity> response = productService.getProductById(productId);
         return response;
+    }
+
+    @GetMapping("/image/{id}")
+    public void showProductImage(@PathVariable String id,
+                               HttpServletResponse response) throws IOException {
+        response.setContentType("image/jpeg"); // Or whatever format you wanna use
+
+        ProductEntity product = productService.getProductById(Long.valueOf(id)).getBody();
+
+        InputStream is = new ByteArrayInputStream(product.getPhoto());
+        IOUtils.copy(is, response.getOutputStream());
     }
 }

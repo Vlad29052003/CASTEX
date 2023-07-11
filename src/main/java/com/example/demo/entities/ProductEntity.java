@@ -137,4 +137,19 @@ public class ProductEntity {
     public void setStock(int stock) {
         this.stock = stock;
     }
+
+    @Override
+    public String toString() {
+        return "ProductEntity{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", photo=" + Arrays.toString(photo) +
+                ", longDescription='" + longDescription + '\'' +
+                ", shortDescription='" + shortDescription + '\'' +
+                ", category='" + category + '\'' +
+                ", price=" + price +
+                ", rating=" + rating +
+                ", stock=" + stock +
+                '}';
+    }
 }
