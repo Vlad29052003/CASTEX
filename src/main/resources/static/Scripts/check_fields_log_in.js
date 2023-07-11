@@ -13,10 +13,11 @@ async function checkLogInElements(event) {
 
     if (correct === true) {
         await fetchAndAssignPublicKey();
-        let encryptedPassword = await encrypt(JSON.stringify(password.value));
+        const encryptedPassword = await encrypt(JSON.stringify(password.value));
         const authenticationRequest = {
             email: email.value,
-            password: encryptedPassword
+            password: encryptedPassword,
+            publicKey: generateRSAKeyPair()
         };
         await logIn(authenticationRequest);
     }
@@ -67,7 +68,7 @@ async function logIn(authenticationRequest) {
         if (res.ok) {
             res.json().then(
                 data => {
-                    let token = data.token;
+                    let token = decrypt(data.token);
                     document.cookie = `jwtCookie=${token}; Secure; HttpOnly; SameSite=Strict; Path=/`;
                     alert("Successfully logged in!\n" + token);
                 }

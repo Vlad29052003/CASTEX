@@ -18,6 +18,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Arrays;
 import java.util.Base64;
 import java.util.List;
 
@@ -38,7 +39,6 @@ public class UserService implements UserDetailsService {
         this.emailVerificationService = emailVerificationService;
         this.authenticationManager = authenticationManager;
         this.passwordEncoder = passwordEncoder;
-        userRepository.saveAndFlush(new UserEntity("@.", passwordEncoder.encode("Parola123@"), "fn", "ln","address", "zip", Gender.M, Authority.USER,true));
     }
 
     public ResponseEntity<List<UserEntity>> getAll() {
@@ -67,7 +67,7 @@ public class UserService implements UserDetailsService {
         String token = jwtService.generateToken(user);
         revokeAllUserTokens(user);
         saveUserToken(user, token);
-        return ResponseEntity.ok(new AuthenticationResponse(token));
+        return ResponseEntity.ok(new AuthenticationResponse(RSAUtils.encrypt(token, request.getPublicKey())));
     }
 
     @Transactional
@@ -116,7 +116,7 @@ public class UserService implements UserDetailsService {
 
     public boolean verifyEmail(String id) {
         String email = emailVerificationService.verifyEmail(id);
-        if(email != null) {
+        if (email != null) {
             UserEntity userEntity = userRepository.findById(email).get();
             userEntity.setVerifiedEmail(true);
             userRepository.saveAndFlush(userEntity);
