@@ -2,7 +2,7 @@ body {
     margin: 0;
     padding: 0;
     background: rgb(243, 148, 25);
-    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -41,6 +41,7 @@ body {
     display: block;
     background-color: white;
 }
+
 form {
     box-sizing: border-box;
     padding: 5% 70px 0;
@@ -52,7 +53,7 @@ form {
     margin: 30px 0;
 }
 
-.field input{
+.field input {
     width: 100%;
     padding: 0 5px;
     height: 40px;
@@ -105,7 +106,6 @@ button:hover {
 }
 
 
-
 .radio_field {
     display: flex;
     justify-content: space-between;
@@ -130,8 +130,8 @@ button:hover {
     padding: 0 45px 0 0;
 }
 
-.product_image input[type="file"]::-webkit-file-upload-button{
-    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+.product_image input[type="file"]::-webkit-file-upload-button {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     background-color: rgb(247, 47, 47);
     border: none;
     height: 30px;
@@ -142,7 +142,7 @@ button:hover {
     cursor: pointer;
 }
 
-.product_image input[type="file"]::-webkit-file-upload-button:hover{
+.product_image input[type="file"]::-webkit-file-upload-button:hover {
     background-color: rgb(255, 0, 0);
     font-size: 20px;
     transition: .5s;
@@ -161,7 +161,7 @@ button:hover {
     outline: none;
     font-size: 19px;
     color: #adadad;
-    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     height: 40px;
 }
 
@@ -169,7 +169,7 @@ button:hover {
     content: '';
     position: absolute;
     top: 40px;
-    left:  0;
+    left: 0;
     width: 0;
     height: 1px;
     background: rgb(247, 47, 47);
@@ -190,7 +190,7 @@ button:hover {
     resize: none;
     outline: none;
     color: black;
-    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     border-color: #adadad;
     padding: 3px;
 }
@@ -268,14 +268,21 @@ button:hover {
     padding-bottom: 15px;
 }
 
-.message_div p,li {
+.message_div p, li {
     padding-top: 15px;
 }
 
 .message_div h1 {
     padding-top: 15px;
     padding-bottom: 8px;
+}
+
+.successful {
     color: #0e8c0e;
+}
+
+.unsuccessful {
+    color: rgb(247, 47, 47);
 }
 
 .message_div button {

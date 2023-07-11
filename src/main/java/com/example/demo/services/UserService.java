@@ -4,6 +4,8 @@ import com.example.demo.authentication.AuthenticationRequest;
 import com.example.demo.authentication.AuthenticationResponse;
 import com.example.demo.configurations.RSAUtils;
 import com.example.demo.entities.UserEntity;
+import com.example.demo.entities.enums.Authority;
+import com.example.demo.entities.enums.Gender;
 import com.example.demo.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -36,13 +38,14 @@ public class UserService implements UserDetailsService {
         this.emailVerificationService = emailVerificationService;
         this.authenticationManager = authenticationManager;
         this.passwordEncoder = passwordEncoder;
+        userRepository.saveAndFlush(new UserEntity("@.", passwordEncoder.encode("Parola123@"), "fn", "ln","address", "zip", Gender.M, Authority.USER,true));
     }
 
     public ResponseEntity<List<UserEntity>> getAll() {
         return ResponseEntity.ok(userRepository.findAll());
     }
 
-    public ResponseEntity<?> signUp(UserEntity userEntity) throws Exception {
+    public ResponseEntity<?> signUp(String domain, UserEntity userEntity) throws Exception {
         boolean emailIsUsed = userRepository.findAll().stream().map(UserEntity::getEmail).anyMatch(u -> u.equals(userEntity.getEmail()));
         if (emailIsUsed) return ResponseEntity.badRequest().body("This email is already in use!");
         byte[] decoded = Base64.getDecoder().decode(userEntity.getPassword());
@@ -50,7 +53,7 @@ public class UserService implements UserDetailsService {
         userEntity.setPassword(passwordEncoder.encode(decryptedPassword));
         userRepository.save(userEntity);
         String uuid = emailVerificationService.generateId(userEntity.getEmail());
-        String verificationLink = "http://localhost:8080" + "/verifyEmail/" + uuid;//todo replace localhost
+        String verificationLink = domain + "/verifyEmail/" + uuid;
         emailSendingService.sendVerificationEmail(userEntity.getEmail(), verificationLink);
         return ResponseEntity.ok("User successfully created!");
     }
@@ -111,12 +114,14 @@ public class UserService implements UserDetailsService {
         jwtService.saveAll(validUserTokens);
     }
 
-    public void verifyEmail(String id) {
+    public boolean verifyEmail(String id) {
         String email = emailVerificationService.verifyEmail(id);
         if(email != null) {
             UserEntity userEntity = userRepository.findById(email).get();
             userEntity.setVerifiedEmail(true);
             userRepository.saveAndFlush(userEntity);
+            return true;
         }
+        return false;
     }
 }

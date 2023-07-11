@@ -23,3 +23,14 @@ async function fetchAndAssignPublicKey() {
 function encrypt(data) {
     return RSAEncrypt.encrypt(data);
 }
+
+function generateRSAKeyPair() {
+    let encrypt = new JSEncrypt({ default_key_size: 2048 });
+    encrypt.getKey();
+    let publicKey = encrypt.getPublicKey();
+    let privateKey = encrypt.getPrivateKey();
+    return {
+        publicKey: publicKey,
+        privateKey: privateKey
+    };
+}

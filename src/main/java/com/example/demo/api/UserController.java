@@ -1,6 +1,7 @@
 package com.example.demo.api;
 
 import com.example.demo.authentication.AuthenticationRequest;
+import com.example.demo.authentication.RegistrationRequest;
 import com.example.demo.entities.UserEntity;
 import com.example.demo.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,8 +35,9 @@ public class UserController {
     }
 
     @PostMapping("/signUp")
-    public ResponseEntity<?> signUp(@RequestBody UserEntity userEntity) throws Exception {
-        return userService.signUp(userEntity);
+    public ResponseEntity<?> signUp(@RequestBody RegistrationRequest request) throws Exception {
+        System.out.println(request);
+        return userService.signUp(request.getDomainName(), request.getUser());
     }
 
     @PostMapping("/logIn")

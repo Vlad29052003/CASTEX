@@ -55,7 +55,8 @@ public class DefaultController {
 
     @GetMapping("/verifyEmail/{id}")
     public String verifyEmail(@PathVariable("id") String id, ModelMap model) {
-        userService.verifyEmail(id);
-        return "email_verified";
+        boolean success = userService.verifyEmail(id);
+        if(success) return "email_verified";
+        return "email_verification_failed";
     }
 }
