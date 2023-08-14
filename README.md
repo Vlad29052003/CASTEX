@@ -43,7 +43,6 @@ Welcome to the README file for the eCommerce Website CASTEX! This project aims t
 Before you begin, make sure you have the following installed on your system:
 
 - Java Development Kit (JDK)
-- Node.js and npm (Node Package Manager)
 
 ## Installation
 
@@ -51,14 +50,8 @@ To get the eCommerce website project up and running on your local machine, follo
 
 1. **Clone the repository:**
 
-    ```bash
-    git clone https://github.com/your-username/eCommerce-Website.git
-    cd eCommerce-Website
-    ```
-
 2. **Build and run the Spring Boot backend:**
 
-    - Navigate to the `backend` directory.
     - Run the following command to start the Spring Boot application:
 
         ```bash
@@ -67,17 +60,8 @@ To get the eCommerce website project up and running on your local machine, follo
 
     - The application is configured to use the H2 in-memory database by default. You can access the H2 console to manage the database by navigating to [http://localhost:8080/h2-console](http://localhost:8080/h2-console). Use the JDBC URL `jdbc:h2:mem:testdb`, and the username and password from your `application.properties` file.
 
-3. **Install frontend dependencies and start the development server:**
 
-    - Navigate to the `frontend` directory.
-    - Run the following commands to install dependencies and start the development server:
-
-        ```bash
-        npm install
-        npm start
-        ```
-
-4. **Access the website:**
+3. **Access the website:**
 
     - Open your web browser and navigate to [http://localhost:8080](http://localhost:8080).
 
