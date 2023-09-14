@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CASTEX</title>
+    <link rel="icon" th:href="@{/Images/icon.png}">
+    <link rel="stylesheet" type="text/css" th:href="@{/Styles/menu_style.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/Styles/login_style.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/Styles/accept_cookies_style.css}">
+</head>
+
+<body>
+
+<div class="container">
+    <div class="logo"><a href="#" onclick="redirectToIndex(); return false;"><img src="/Images/logo.png"></a></div>
+    <div class="message_div">
+        <h1 class="unsuccessful">
+            Verification failed!
+        </h1>
+        <div class="inner">
+            <p>
+               Oops, there has been an error. Maybe you have already verified your email, or there has been an error on our side. We are really sorry, and we look forward to serving you and providing you with a great experience. If you have any questions or need further assistance, please don't hesitate to reach out to our support team. Good luck next time!
+            </p>
+        </div>
+        <button onclick="redirectToLogIn()">Go to Log In</button>
+    </div>
+</div>
+
+<script th:src="@{/Scripts/redirect.js}"></script>
+
+</body>
+</html>

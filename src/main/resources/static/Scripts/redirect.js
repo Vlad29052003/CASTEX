@@ -23,3 +23,7 @@ function redirectToTermsAndConditions() {
 function redirectToCart() {
     window.location.href = server + '/cart';
 }
+
+function redirectToAccountCreated() {
+    window.location.href = server + '/account-created';
+}

@@ -1,4 +1,4 @@
-const RSAEncrypt = new JSEncrypt();
+const RSA = new JSEncrypt({ default_key_size: 2048 });
 let publicKey = "";
 
 async function fetchPublicKey() {
@@ -13,7 +13,7 @@ async function fetchPublicKey() {
 async function fetchAndAssignPublicKey() {
     try {
         publicKey = await fetchPublicKey();
-        RSAEncrypt.setPublicKey(publicKey);
+        RSA.setPublicKey(publicKey);
     } catch (error) {
         console.error('Failed to fetch public key:', error);
         throw error;
@@ -21,5 +21,19 @@ async function fetchAndAssignPublicKey() {
 }
 
 function encrypt(data) {
-    return RSAEncrypt.encrypt(data);
+    return RSA.encrypt(data);
+}
+
+function decrypt(data) {
+    return RSA.decrypt(data);
+}
+
+function generateRSAKeyPair() {
+    let encryptor = new JSEncrypt({ default_key_size: 2048 });
+    encryptor.getKey();
+    let publicKey = encryptor.getPublicKey();
+    let privateKey = encryptor.getPrivateKey();
+    RSA.setPrivateKey(privateKey);
+
+    return publicKey;
 }

@@ -1,12 +1,22 @@
 package com.example.demo.api;
 
 import com.example.demo.configurations.RSAUtils;
+import com.example.demo.services.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @Controller
 public class DefaultController {
+    private final UserService userService;
+
+    @Autowired
+    public DefaultController(UserService userService) {
+        this.userService = userService;
+    }
 
     @GetMapping(path = { "", "/" })
     public String home() {
@@ -33,8 +43,20 @@ public class DefaultController {
         return "cart";
     }
 
+    @GetMapping("/account-created")
+    public String accountCreated() {
+        return "account_created";
+    }
+
     @GetMapping("/get-public-key")
     public ResponseEntity<String> getPublicKey() {
         return ResponseEntity.ok(RSAUtils.getPublicKey());
+    }
+
+    @GetMapping("/verifyEmail/{id}")
+    public String verifyEmail(@PathVariable("id") String id, ModelMap model) {
+        boolean success = userService.verifyEmail(id);
+        if(success) return "email_verified";
+        return "email_verification_failed";
     }
 }

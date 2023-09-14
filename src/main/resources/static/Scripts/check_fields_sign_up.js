@@ -53,90 +53,93 @@ async function checkSignUpElements(event) {
         let gender = "F";
         if (isMale.checked) gender = "M";
 
-        const credentials = {
-            email: email.value,
-            password: encryptedPassword,
-            firstName: firstName.value,
-            lastName: lastName.value,
-            address: address.value,
-            zipCode: zip.value,
-            gender: gender,
-            authority: "USER"
-        };
-        signUp(credentials);
+        const request = {
+            domain: server,
+            user: {
+                email: email.value,
+                password: encryptedPassword,
+                firstName: firstName.value,
+                lastName: lastName.value,
+                address: address.value,
+                zipCode: zip.value,
+                gender: gender,
+                authority: "USER",
+                verifiedEmail: false
+            }
+        }
+        signUp(request);
     }
 }
 
 // the function for checking the first name
 function checkFirstName(name) {
     if (name.length === 0 || typeof name === 'undefined') {      //required field check
-        appendMessage("field","This field is required!", "c_firstname_message", 1, 3);
+        appendMessage("field", "This field is required!", "c_firstname_message", 1, 3);
         return false;
     } else if (name.length > 50) {
-        appendMessage("field","Max 50 characters!", "c_firstname_message", 1, 3);
+        appendMessage("field", "Max 50 characters!", "c_firstname_message", 1, 3);
         return false;
     } else for (let i = 0; i < name.length; i++) {
         if (!(name.charAt(i) >= 'A' && name.charAt(i) <= 'Z' || name.charAt(i) >= 'a' && name.charAt(i) <= 'z')) {
-            appendMessage("field","The name may only contain letters!", "c_firstname_message", 1, 3);
+            appendMessage("field", "The name may only contain letters!", "c_firstname_message", 1, 3);
             return false;
         }
     }
-    appendMessage("field","Everything seems right!", "c_firstname_message", 0, 3);
+    appendMessage("field", "Everything seems right!", "c_firstname_message", 0, 3);
     return true;
 }
 
 // the function for checking the last name
 function checkLastName(name) {
     if (name.length === 0 || typeof name === 'undefined') {      //required field check
-        appendMessage("field","This field is required!", "c_lastname_message", 1, 4);
+        appendMessage("field", "This field is required!", "c_lastname_message", 1, 4);
         return false;
     } else if (name.length > 50) {
-        appendMessage("field","Max 50 characters!", "c_lastname_message", 1, 4);
+        appendMessage("field", "Max 50 characters!", "c_lastname_message", 1, 4);
         return false;
     } else for (let i = 0; i < name.length; i++) { //check if it contains only letters
         if (!(name.charAt(i) >= 'A' && name.charAt(i) <= 'Z' || name.charAt(i) >= 'a' && name.charAt(i) <= 'z')) {
-            appendMessage("field","The name may only contain letters!", "c_lastname_message", 1, 4);
+            appendMessage("field", "The name may only contain letters!", "c_lastname_message", 1, 4);
             return false;
         }
     }
-    appendMessage("field","Everything seems right!", "c_lastname_message", 0, 4);
+    appendMessage("field", "Everything seems right!", "c_lastname_message", 0, 4);
     return true;
 }
 
 // the function for checking the address
 function checkAddress(address) {
     if (address.length === 0 || typeof address === 'undefined') {      //required field check
-        appendMessage("field","This field is required!", "c_addr_message", 1, 5);
+        appendMessage("field", "This field is required!", "c_addr_message", 1, 5);
         return false;
     } else if (address.length < 10 || address.length > 255) {
-        appendMessage("field","Address must be 10 to 255 characters long!", "c_addr_message", 1, 5);
+        appendMessage("field", "Address must be 10 to 255 characters long!", "c_addr_message", 1, 5);
         return false;
     }
-    appendMessage("field","Everything seems right!", "c_addr_message", 0, 5);
+    appendMessage("field", "Everything seems right!", "c_addr_message", 0, 5);
     return true;
 }
 
 // the function for checking the zip code
 function checkZip(zip) {
-    // TODO //
     if (zip.length === 0 || typeof zip === 'undefined') {      //required field check
-        appendMessage("field","This field is required!", "c_zip_message", 1, 6);
+        appendMessage("field", "This field is required!", "c_zip_message", 1, 6);
         return false;
     } else if (zip.length > 20) { //check if it is the right format 0000AA
-        appendMessage("field","Max 20 characters!", "c_zip_message", 1, 6);
+        appendMessage("field", "Max 20 characters!", "c_zip_message", 1, 6);
         return false;
     }
-    appendMessage("field","Everything seems right!", "c_zip_message", 0, 6);
+    appendMessage("field", "Everything seems right!", "c_zip_message", 0, 6);
     return true;
 }
 
 // the function for checking the email
 function checkEmail(email) {
     if (email.length === 0 || typeof email === 'undefined') {      //required field check
-        appendMessage("field","This field is required!", "c_email_message", 1, 0);
+        appendMessage("field", "This field is required!", "c_email_message", 1, 0);
         return false;
     } else if (email.length > 255) { //check if it is the right format 0000AA
-        appendMessage("field","Max 255 characters!", "c_email_message", 1, 0);
+        appendMessage("field", "Max 255 characters!", "c_email_message", 1, 0);
         return false;
     } else { //check if the format is valid aaa@aa.a
         let nr1 = 0, nr2 = 0;
@@ -145,36 +148,36 @@ function checkEmail(email) {
             if (email[i] === '.') nr2++;
         }
         if (nr1 !== 1 || nr2 !== 1) {
-            appendMessage("field","The format is invalid!", "c_email_message", 1, 0);
+            appendMessage("field", "The format is invalid!", "c_email_message", 1, 0);
             return false;
         } else if (email.indexOf("@") > email.indexOf(".")) {
-            appendMessage("field","The format is invalid!", "c_email_message", 1, 0);
+            appendMessage("field", "The format is invalid!", "c_email_message", 1, 0);
             return false;
         }
     }
-    appendMessage("field","Everything seems right!", "c_email_message", 0, 0);
+    appendMessage("field", "Everything seems right!", "c_email_message", 0, 0);
     return true;
 }
 
 // the function for checking the password
 function checkPassword(password, firstName, lastName) {
     if (password.length === 0 || typeof password === 'undefined') {      //required field check
-        appendMessage("field","This field is required!", "c_pass_message", 1, 1);
+        appendMessage("field", "This field is required!", "c_pass_message", 1, 1);
         return false;
     } else {
         if (password.length < 8) { //check the length
-            appendMessage("field","The password requires at least 8 characters!", "c_pass_message", 1, 1);
+            appendMessage("field", "The password requires at least 8 characters!", "c_pass_message", 1, 1);
             return false;
         } else if (password.length >= 200) { //check if it is the right format 0000AA
-            appendMessage("field","Max 200 characters!", "c_pass_message", 1, 1);
+            appendMessage("field", "Max 200 characters!", "c_pass_message", 1, 1);
             return false;
         }
         if (firstName.length > 0 && password.toUpperCase().includes(firstName.toUpperCase())) {
-            appendMessage("field","The password may not contain your firstname!", "c_pass_message", 1, 1);
+            appendMessage("field", "The password may not contain your firstname!", "c_pass_message", 1, 1);
             return false;
         }
         if (lastName.length > 0 && password.toUpperCase().includes(lastName.toUpperCase())) {
-            appendMessage("field","The password may not contain your lastname!", "c_pass_message", 1, 1);
+            appendMessage("field", "The password may not contain your lastname!", "c_pass_message", 1, 1);
             return false;
         }
 
@@ -197,26 +200,26 @@ function checkPassword(password, firstName, lastName) {
         }
 
         if (!hasLowercase) {
-            appendMessage("field","The password requires at least a lowercase char!", "c_pass_message", 1, 1);
+            appendMessage("field", "The password requires at least a lowercase char!", "c_pass_message", 1, 1);
             return false;
         }
         if (!hasUppercase) {
-            appendMessage("field","The password requires at least an uppercase char!", "c_pass_message", 1, 1);
+            appendMessage("field", "The password requires at least an uppercase char!", "c_pass_message", 1, 1);
             return false;
         }
         if (!hasNumber) {
-            appendMessage("field","The password requires at least a number!", "c_pass_message", 1, 1);
+            appendMessage("field", "The password requires at least a number!", "c_pass_message", 1, 1);
             return false;
         }
         if (!hasSymbol) {
-            appendMessage("field","The password requires at least a symbol!", "c_pass_message", 1, 1);
+            appendMessage("field", "The password requires at least a symbol!", "c_pass_message", 1, 1);
             return false;
         }
     }
 
     if (password.length < 12) {
-        appendMessage("field","The password is recommended to have more than 12 characters!", "c_pass_message", 2, 1);
-    } else appendMessage("field","Everything seems right!", "c_pass_message", 0, 1);
+        appendMessage("field", "The password is recommended to have more than 12 characters!", "c_pass_message", 2, 1);
+    } else appendMessage("field", "Everything seems right!", "c_pass_message", 0, 1);
     return true;
 }
 
@@ -224,30 +227,30 @@ function checkPassword(password, firstName, lastName) {
 // the function for checking the passwords match
 function checkRepeatPassword(password, repeatPassword) {
     if (password.length === 0 || typeof password === 'undefined') { //required field check
-        appendMessage("field","This field is required!", "c_reppass_message", 1, 2);
+        appendMessage("field", "This field is required!", "c_reppass_message", 1, 2);
         return false;
     } else if (password !== repeatPassword) { //check if passwords match
-        appendMessage("field","Passwords do not match!", "c_reppass_message", 1, 2);
+        appendMessage("field", "Passwords do not match!", "c_reppass_message", 1, 2);
         return false;
-    } else appendMessage("field","Everything seems right!", "c_reppass_message", 0, 2);
+    } else appendMessage("field", "Everything seems right!", "c_reppass_message", 0, 2);
     return true;
 }
 
 function validateForm(isMale, isFemale) {
     if (!isMale.checked && !isFemale.checked) {
-        appendMessage("checkboxes","This field is required!", "c_radio_message", 1, 0);
+        appendMessage("checkboxes", "This field is required!", "c_radio_message", 1, 0);
         return false;
     }
-    appendMessage("checkboxes","", "c_radio_message", 0, 0);
+    appendMessage("checkboxes", "", "c_radio_message", 0, 0);
     return true;
 }
 
 function isChecked(termsAndConditions) {
-    if(!termsAndConditions.checked) {
-        appendMessage("terms","This field is required!", "c_checkbox_message", 1, 0);
+    if (!termsAndConditions.checked) {
+        appendMessage("terms", "This field is required!", "c_checkbox_message", 1, 0);
         return false;
     }
-    appendMessage("terms","", "c_checkbox_message", 0, 0);
+    appendMessage("terms", "", "c_checkbox_message", 0, 0);
     return true;
 }
 
@@ -277,21 +280,19 @@ function appendMessage(className, message, id, color, position) {
 
 }
 
-function signUp(credentials) {
+function signUp(request) {
     fetch(server + "/api/user/signUp", {
         method: 'POST', headers: {
             'Content-Type': 'application/json'
-        }, body: JSON.stringify(credentials)
+        }, body: JSON.stringify(request)
     })
         .then(response => {
             let promise = response.text();
             if (response.ok) {
-                //TODO create successfully created page instead of alert
-                window.location.href = window.location.protocol + '//' + window.location.host + '/login';
-                alert("Account successfully created");
+                redirectToAccountCreated();
             } else {
                 promise.then((data) => {
-                    if (data === "This email is already in use!") appendMessage("field","This email is already in use!", "c_email_message", 1, 0); else throw new Error(data);
+                    if (data === "This email is already in use!") appendMessage("field", "This email is already in use!", "c_email_message", 1, 0); else throw new Error(data);
                 });
             }
         })

@@ -20,7 +20,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
-	implementation 'org.springframework.session:spring-session-jdbc'
+	implementation 'org.springframework.boot:spring-boot-starter-mail'
 	implementation group: 'org.springframework', name: 'spring-messaging', version: '5.2.22.RELEASE'
 	implementation 'com.h2database:h2'
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
